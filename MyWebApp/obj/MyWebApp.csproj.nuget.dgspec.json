@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CNET-master\\MyWebApp\\MyWebApp.csproj": {}
+    "C:\\QLBH\\MyWebApp\\MyWebApp.csproj": {}
   },
   "projects": {
-    "C:\\CNET-master\\MyWebApp\\MyWebApp.csproj": {
+    "C:\\QLBH\\MyWebApp\\MyWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CNET-master\\MyWebApp\\MyWebApp.csproj",
+        "projectUniqueName": "C:\\QLBH\\MyWebApp\\MyWebApp.csproj",
         "projectName": "MyWebApp",
-        "projectPath": "C:\\CNET-master\\MyWebApp\\MyWebApp.csproj",
+        "projectPath": "C:\\QLBH\\MyWebApp\\MyWebApp.csproj",
         "packagesPath": "C:\\Users\\Hi\\.nuget\\packages\\",
-        "outputPath": "C:\\CNET-master\\MyWebApp\\obj\\",
+        "outputPath": "C:\\QLBH\\MyWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

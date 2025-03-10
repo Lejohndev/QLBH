@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MyWebApp"
+    "\\MyWebApp",
+    "\\MyWebApp\\Areas",
+    "\\MyWebApp\\Areas\\Admin",
+    "\\MyWebApp\\Areas\\Admin\\Controllers"
   ],
-  "SelectedNode": "\\MyWebApp\\bin",
+  "SelectedNode": "\\MyWebApp\\Areas\\Admin\\Controllers\\ProductController.cs",
   "PreviewInSolutionExplorer": false
 }
