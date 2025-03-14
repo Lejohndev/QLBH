@@ -1,8 +1,8 @@
-﻿@model UserModel 
+﻿@model LoginViewModel 
 @{
     ViewData["title"] = "Login";
 }
-<section id="form">
+<section id="">
 	<!--form-->
 	<div class="container">
 		<div class="row">
@@ -11,7 +11,7 @@
 					<!--login form-->
 					<h2>Login to your accout</h2>
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-					<form asp-action="Login to your accout" asp-controller="Account">
+					<form asp-action="Login" asp-controller="Account">
 
 						<div class="form-group">
 							<label>UserName</label>
