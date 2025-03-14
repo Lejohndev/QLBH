@@ -3,7 +3,11 @@
 	<div class="col-sm-3">
 		@Html.Partial("_SidebarPartial")
 	</div>
-
+	<style>
+		.product-image-wrapper {
+			height: 470px;
+		}
+	</style>
 	<div class="col-sm-9 padding-right">
 		<div class="features_items"><!--features_items-->
 			<h2 class="title text-center">Features Items</h2>
@@ -12,25 +16,27 @@
 
 				<div class="col-sm-4">
 					<div class="product-image-wrapper">
-						<a>
+						
 						<div class="single-products">
+							<a asp-action="Details" asp-controller="Product" asp-route-Id="@item.Id">
 							<div class="productinfo text-center">
-								<img src="~/images/@item.Image" alt="@item.Name" width="100%" />
+								<img src="~/media/products/@item.Image" alt="@item.Name" width="100%" />
 								<h2>$@item.Price</h2>	
 								<p>@item.Name</p>
 								<p>Danh mục : @item.Category.Name</p>
 								<p>Thương hiệu : @item.Brand.Name</p>
-								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+								<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@item.Id"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 							</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<h2>$@item.Price</h2>
-									<p>@item.Name</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</div>
-							</div>
+							@* <div class="product-overlay"> *@
+							@* 	<div class="overlay-content"> *@
+							@* 		<h2>$@item.Price</h2> *@
+							@* 		<p>@item.Name</p> *@
+							@* 		<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> *@
+							@* 	</div> *@
+							@* </div> *@
+							</a>
 						</div>
-						</a>
+	@* maybe lỗi					 *@
 						<div class="choose">
 							<ul class="nav nav-pills nav-justified">
 								<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>

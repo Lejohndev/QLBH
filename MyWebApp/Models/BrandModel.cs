@@ -6,10 +6,10 @@ namespace MyWebApp.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required, MinLength(4, ErrorMessage = "Yêu cầu nhập Tên Thương hiệu")]
+        [Required( ErrorMessage = "Yêu cầu nhập Tên Thương hiệu")]
 
         public string Name { get; set; }
-        [Required, MinLength(4, ErrorMessage = "Yêu cầu nhập mô tả Thương hiệu")]
+        [Required( ErrorMessage = "Yêu cầu nhập mô tả Thương hiệu")]
 
         public string Description { get; set; } 
         public string Slug { get; set; }

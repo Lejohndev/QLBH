@@ -1,4 +1,4 @@
-﻿using MyWebApp.Repository.Validation;   
+﻿using MyWebApp.Repository.Validation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,7 +17,7 @@ namespace MyWebApp.Models
 
 
         public string Description { get; set; }
-        [Required, Range(1,int.MaxValue, ErrorMessage = "Yêu cầu nhập giá sản phẩm")]
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Yêu cầu nhập giá sản phẩm")]
 
         public decimal Price { get; set; }
         [Required, Range(1, int.MaxValue, ErrorMessage = "Chọn một thương hiệu")]
@@ -28,9 +28,9 @@ namespace MyWebApp.Models
         public CategoryModel Category { get; set; }
         public BrandModel Brand { get; set; }
 
-        public string Image { get; set; } 
+        public string Image { get; set; }
         [NotMapped]
         [FileExtension]
-        public IFormFile? ImageUpload { get; set; }    
+        public IFormFile? ImageUpload { get; set; }
     }
 }

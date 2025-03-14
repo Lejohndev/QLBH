@@ -1,3 +1,4 @@
+wwwroot\backend\js\site.js
 wwwroot\css\animate.css
 wwwroot\css\bootstrap.min.css
 wwwroot\css\font-awesome.min.css
@@ -75,4 +76,5 @@ wwwroot\lib\jquery-validation\LICENSE.md
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-wwwroot\media\products\bd7fee21-86e8-4671-9075-ce166c869373_2.jpg
+wwwroot\media\products\7e991e91-6582-4694-89d6-00b14e052bb2_LV Biker PM 5000.jpg
+wwwroot\media\products\82252e8b-f113-4c86-8976-02347012a899_livetream-shopee-la-gi.jpg

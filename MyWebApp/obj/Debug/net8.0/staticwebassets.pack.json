@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\MyWebApp.pb0qbwb2j1.bundle.scp.css"
     },
     {
+      "Id": "C:\\QLBH\\MyWebApp\\wwwroot\\backend\\js\\site.js",
+      "PackagePath": "staticwebassets\\backend\\js\\site.js"
+    },
+    {
       "Id": "C:\\QLBH\\MyWebApp\\wwwroot\\css\\animate.css",
       "PackagePath": "staticwebassets\\css\\animate.css"
     },
@@ -313,8 +317,12 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\QLBH\\MyWebApp\\wwwroot\\media\\products\\bd7fee21-86e8-4671-9075-ce166c869373_2.jpg",
-      "PackagePath": "staticwebassets\\media\\products\\bd7fee21-86e8-4671-9075-ce166c869373_2.jpg"
+      "Id": "C:\\QLBH\\MyWebApp\\wwwroot\\media\\products\\7e991e91-6582-4694-89d6-00b14e052bb2_LV Biker PM 5000.jpg",
+      "PackagePath": "staticwebassets\\media\\products\\7e991e91-6582-4694-89d6-00b14e052bb2_LV Biker PM 5000.jpg"
+    },
+    {
+      "Id": "C:\\QLBH\\MyWebApp\\wwwroot\\media\\products\\82252e8b-f113-4c86-8976-02347012a899_livetream-shopee-la-gi.jpg",
+      "PackagePath": "staticwebassets\\media\\products\\82252e8b-f113-4c86-8976-02347012a899_livetream-shopee-la-gi.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MyWebApp.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
