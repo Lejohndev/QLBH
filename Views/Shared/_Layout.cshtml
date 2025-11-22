@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Home | A-Store</title>
+	<link href="~/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="~/css/prettyPhoto.css" rel="stylesheet">
+	<link href="~/css/price-range.css" rel="stylesheet">
+	<link href="~/css/animate.css" rel="stylesheet">
+	<link href="~/css/main.css" rel="stylesheet">
+	<link href="~/css/responsive.css" rel="stylesheet">
+
+	<link rel="shortcut icon" href="~/images/ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
+
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="~/css/Layout.css" />
+	<link href="~/Content/css/responsive.css" rel="stylesheet" />
+	
+</head><!--/head-->
+
+<body>
+	<header id="header">
+		
+		
+		
+		<!--header-->
+		<div class="header_top">
+			
+			<!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> </a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						@Html.Partial("Header")
+					</div>
+					<div class="col-sm-4">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+
+		<div class="header-middle">
+			<!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="~/images/home/logo.png" alt="" /></a>
+						</div>
+						<div class="btn-group pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+									USA
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Canada</a></li>
+									<li><a href="#">UK</a></li>
+								</ul>
+							</div>
+
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+									DOLLAR
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#">Canadian Dollar</a></li>
+									<li><a href="#">Pound</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+
+								<li><a asp-action="Index" asp-controller="Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								@if (User.Identity?.IsAuthenticated ?? false)
+								{
+									<li><a asp-controller="Account" asp-action="Logout"><i class="fa fa-lock"></i>Hi, @User.Identity.Name</a></li>
+									<li><a asp-action="History" asp-controller="Account"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+									<li class="dropdown">
+										<a href="#">Account<i class="fa fa-angle-down"></i></a>
+										<ul role="menu" class="sub-menu">
+											<li><a asp-controller="Dashboard" asp-action="Index" asp-area="Admin">Admin</a></li>
+										</ul>
+									</li>
+
+								}
+								else
+								{
+									<li><a asp-controller="Account" asp-action="Login"><i class="fa fa-lock"></i>Login</a></li>
+
+								}
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+		<div class="header-bottom">
+			<!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
+								<li class="dropdown">
+									<a href="#">Shop<i class="fa fa-angle-down"></i></a>
+									<ul role="menu" class="sub-menu">
+										<li><a asp-action="Index" asp-controller="Category">Categories</a></li>
+										<li><a asp-controller="Product" asp-action="Details">Product Details</a></li>
+										<li><a asp-action="History" asp-controller="Account">Checkout</a></li>
+										<li><a asp-action="Index" asp-controller="Cart">Cart</a></li>
+
+									</ul>
+								</li>
+								<li><a asp-action="Index" asp-controller="Cart">Cart</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<form asp-controller="Product" asp-action="Search" method="post">
+
+							<div class="search_box pull-right">
+								<input type="text" placeholder="Search" name="searchTerm" />
+								<button class="btn btn-warning" type="submit">Search</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+
+	<section id="slider">
+		<!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>A</span>-STORE</h1>
+									<h2>Fashion is identity</h2>
+									<p>Fashion is not just about clothing; it is a reflection of personality, confidence, and a unique way of expressing oneself. </p>
+									<button type="button" class="btn btn-default get"><a asp-action="Detail" asp-controller="Product" asp-route-Id="1">Get it now</a></button>
+								</div>
+								<div class="col-sm-6">
+									<img src="~/images/home/girl1.jpg" class="girl img-responsive" alt="" />
+									<img src="~/images/home/pricing.png" class="pricing" alt="" />
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>A</span>-STORE</h1>
+									<h2>Fashion is identity</h2>
+									<p>Fashion is not just about clothing; it is a reflection of personality, confidence, and a unique way of expressing oneself. </p>
+									<button type="button" class="btn btn-default get"><a asp-action="Detail" asp-controller="Product" asp-route-Id="1">Get it now</a></button>
+								</div>
+								<div class="col-sm-6">
+									<img src="~/images/home/girl2.jpg" class="girl img-responsive" alt="" />
+									<img src="~/images/home/pricing.png" class="pricing" alt="" />
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>A</span>-STORE</h1>
+									<h2>Fashion is identity</h2>
+									<p>Fashion is not just about clothing; it is a reflection of personality, confidence, and a unique way of expressing oneself. </p>
+									<button type="button" class="btn btn-default get"><a asp-action="Detail" asp-controller="Product" asp-route-Id="1">Get it now</a></button>
+								</div>
+								<div class="col-sm-6">
+									<img src="~/images/home/girl3.jpg" class="girl img-responsive" alt="" />
+									<img src="~/images/home/pricing.png" class="pricing" alt="" />
+								</div>
+							</div>
+						</div>
+
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+
+	<section>
+		<div class="container">
+			<div class="row">
+				@Html.Partial("_NotificationPartial")
+				@RenderBody()
+			</div>
+		</div>
+	</section>
+
+	<footer id="footer">
+		<!--Footer-->
+		<div class="footer-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="companyinfo">
+							<h2><span>A</span>-Store</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+						</div>
+					</div>
+					<div class="col-sm-7">
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="~/images/HP_Portrait_Gucci-TierII-SS25-Jan25-SS25TIERII-STILLLIFE-S-01-0139_001_Default.png" alt="" />
+									</div>
+									
+								</a>
+								<p>A-STORE</p>
+								<h2>20 March 2025</h2>
+							</div>
+						</div>
+
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="~/images/HP_Portrait_Gucci-TierII-SS25-Jan25-SS25TIERII-STILLLIFE-S-25-1342_001_Default.png" alt="" />
+									</div>
+									
+								</a>
+								<p>A-STORE</p>
+								<h2>20 March 2025</h2>
+							</div>
+						</div>
+
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="~/images/HP_Portrait_Gucci-TierII-SS25-Jan25-SS25TIERII-STILLLIFE-S-28-1449_001_Default.png" alt="" />
+									</div>
+									
+								</a>
+								<p>A-STORE</p>
+								<h2>20 March 2025</h2>
+							</div>
+						</div>
+
+						<div class="col-sm-3">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="~/images/HP_Portrait_Gucci-TierII-SS25-Jan25-SS25TIERII-STILLLIFE-S-39-2034_001_Default.png" alt="" />
+									</div>
+									
+									
+								</a>
+								<p>A-STORE</p>
+								<h2>20 March 2025</h2>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="address">
+							<img src="~/images/home/map.png" alt="" />
+							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+                    <p class="pull-left">Copyright © 2025 A-STORE Inc. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+
+	</footer><!--/Footer-->
+
+
+
+	<script src="~/js/jquery.js"></script>
+	<script src="~/js/bootstrap.min.js"></script>
+	<script src="~/js/jquery.scrollUp.min.js"></script>
+	<script src="~/js/price-range.js"></script>
+	<script src="~/js/jquery.prettyPhoto.js"></script>
+	<script src="~/js/main.js"></script>
+	<script src="~/js/site.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+	<script>
+		$(function () {
+			var message = '@TempData["success"]';
+			if (message != '')
+			Swal.fire(message);
+
+		});
+	</script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

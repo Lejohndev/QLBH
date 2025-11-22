@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-Properties",
+      "appliesTo": "Properties/",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-MyWebApp",
+      "appliesTo": "/",
+      "type": "launch"
+    }
+  ]
+}

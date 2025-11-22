@@ -1,0 +1,41 @@
+﻿.header_top {
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    top: 0;
+    /* padding: 20px; */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+ul.nav.nav-pills {
+    margin-top: 10px;
+}
+
+ul.nav.navbar-nav {
+    margin-top: 10px;
+}
+
+.header-middle .container .row {
+    margin-top: 50px;
+}
+
+#slider {
+    padding-bottom: 10px;
+    height: 550px;
+    background-image: url('../images/Slider.png');
+    background-size: cover; /* Giúp ảnh che phủ toàn bộ vùng slider */
+    margin-top: 0;
+    padding-top: 0;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.carousel-inner {
+    margin-top: 60px;
+}
+.iframe-img {
+    height: 100px;
+}

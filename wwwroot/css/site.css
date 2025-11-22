@@ -1,0 +1,57 @@
+﻿body {
+    font-family: 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    margin-top: 4px;
+    flex: 1; /* Chiếm không gian còn lại để căn giữa */
+    text-align: center; /* Căn giữa nội dung */
+    transition: transform 0.5s ease;
+}
+
+    .logo a {
+        font-size: 30px; /* Tăng kích thước chữ */
+        font-weight: 300; /* Đậm chữ */
+        text-decoration: none; /* Bỏ gạch chân */
+        color: #000; /* Màu chữ */
+    }
+
+nav {
+    flex: 1; /* Chiếm không gian còn lại */
+}
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: flex-end; /* Căn phải cho menu */
+        gap: 20px;
+    }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+
+.search-cart {
+    display: flex;
+    align-items: center;
+}
+
+    .search-cart input {
+        padding: 5px;
+        margin-right: 10px;
+    }
+
+    .search-cart a {
+        text-decoration: none;
+        color: #000;
+    }
+
+
+/* Hiệu ứng phóng to */
+.zoom {
+    transform: scale(4) translateY( 65px ); /* Tăng kích thước phóng to và dịch chuyển xuống 70px */
+    transform-origin: center; /* Đặt điểm gốc phóng to ở giữa */
+}
