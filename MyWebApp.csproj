@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\Models\**" />
     <Compile Remove="wwwroot\backend\image\**" />
+    <Content Remove="Areas\Admin\Models\**" />
     <Content Remove="wwwroot\backend\image\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\**" />
     <EmbeddedResource Remove="wwwroot\backend\image\**" />
+    <None Remove="Areas\Admin\Models\**" />
     <None Remove="wwwroot\backend\image\**" />
   </ItemGroup>
 
@@ -29,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <Folder Include="Areas\Admin\Models\" />
 	  <Folder Include="Migrations\" />
 	  <Folder Include="wwwroot\media\products\" />
   </ItemGroup>

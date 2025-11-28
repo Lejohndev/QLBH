@@ -80,9 +80,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-//seeding data
+//seeding data: tạo role và tài khoản admin nếu chưa có
+await SeedData.SeedAdminAsync(app.Services);
 
-var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<DataContext>();
-
-//SeedData.SeedingData(context);
 app.Run();

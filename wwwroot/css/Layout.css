@@ -24,7 +24,7 @@ ul.nav.navbar-nav {
 
 #slider {
     padding-bottom: 10px;
-    height: 550px;
+    height: 500px;
     background-image: url('../images/Slider.png');
     background-size: cover; /* Giúp ảnh che phủ toàn bộ vùng slider */
     margin-top: 0;

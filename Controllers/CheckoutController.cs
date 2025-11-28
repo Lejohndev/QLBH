@@ -17,8 +17,10 @@ namespace MyWebApp.Areas.Admin.Controllers
         {
             _dataContext = context;
         }
-
-        public async Task<IActionResult> Checkout()
+      
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Checkout(CheckoutViewModel vm)
         {
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
             if (userEmail == null)
@@ -39,6 +41,12 @@ namespace MyWebApp.Areas.Admin.Controllers
                 _dataContext.Add(orderItem);
                 await _dataContext.SaveChangesAsync(); // Lưu để có id cho model
 
+                vm.Address.OrderId = orderItem.Id;
+                vm.Address.Email = userEmail;
+
+                _dataContext.OrderAddresses.Add(vm.Address);
+                await _dataContext.SaveChangesAsync();
+
                 List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
                 foreach (var cart in cartItems)
                 {
@@ -55,6 +63,7 @@ namespace MyWebApp.Areas.Admin.Controllers
                     };
                     _dataContext.Add(orderdetails);
                     await _dataContext.SaveChangesAsync(); // Use async method
+
                 }
                 HttpContext.Session.Remove("Cart");
                 TempData["success"] = "Checkout thành công, vui lòng chờ duyệt đơn hàng";

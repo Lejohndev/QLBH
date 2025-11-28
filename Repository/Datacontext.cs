@@ -17,6 +17,7 @@ namespace MyWebApp.Repository
         public DbSet<OrderModel> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<StatisticalModel> Statistical { get; set; }
+        public DbSet<OrderAddress> OrderAddresses { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

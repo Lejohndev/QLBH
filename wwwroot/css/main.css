@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
+  background:white;
   position: relative;
   font-weight:400px;
 }
@@ -905,7 +905,7 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity:;
+  /* opacity:; */
 }
 
 .single-products:hover .product-overlay {
@@ -1900,6 +1900,7 @@ h2.title {
 
 
 .form-two, .form-one {
+
   float: left;
   width: 47%
 }

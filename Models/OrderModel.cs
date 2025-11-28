@@ -10,7 +10,7 @@ namespace MyWebApp.Models
         public DateTime CreatedDate { get; set; }
         public int Status { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
-
+        public ICollection<OrderAddress> OrderAddresses { get; set; }
 
     }
 }

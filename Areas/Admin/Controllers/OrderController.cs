@@ -17,11 +17,18 @@ namespace MyWebApp.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _dataContext.Orders.OrderByDescending(p => p.Id).ToListAsync());  
+            var orders = await _dataContext.Orders
+                .Include(o => o.OrderDetails)
+                .Include(o => o.OrderAddresses)
+                .OrderByDescending(o => o.Id)
+                .ToListAsync();
+
+            return View(orders);  
         }
         public async Task<IActionResult> ViewOrder(string ordercode)
         {
             var DetailsOrder = await _dataContext.OrderDetails.Include(od => od.Product).Where(od => od.OrderCode == ordercode).ToListAsync();
+          
             var Order = _dataContext.Orders.Where(o => o.OrderCode == ordercode).First();
             ViewBag.Status = Order.Status;
             return View(DetailsOrder);

@@ -145,17 +145,35 @@ namespace MyWebApp.Areas.Admin.Controllers
                 var updateUserResult = await _userManager.UpdateAsync(existingUser); //thực hiện update
                 if (updateUserResult.Succeeded)
                 {
+                    // Cập nhật vai trò của người dùng
+                    var newRole = await _roleManager.FindByIdAsync(user.RoleId);
+                    if (newRole != null)
+                    {
+                        var currentRoles = await _userManager.GetRolesAsync(existingUser);
+                        var removeRolesResult = await _userManager.RemoveFromRolesAsync(existingUser, currentRoles);
+                        if (removeRolesResult.Succeeded)
+                        {
+                            var addRoleResult = await _userManager.AddToRoleAsync(existingUser, newRole.Name);
+                            if (!addRoleResult.Succeeded)
+                            {
+                                AddIdentityErrors(addRoleResult);
+                            }
+                        }
+                        else
+                        {
+                            AddIdentityErrors(removeRolesResult);
+                        }
+                    }
                     return RedirectToAction("Index", "User");
                 }
                 else
                 {
                     AddIdentityErrors(updateUserResult);
-                    return View(existingUser);
                 }
             }
 
             var roles = await _roleManager.Roles.ToListAsync();
-            ViewBag.Roles = new SelectList(roles, "Id", "Name");
+            ViewBag.Roles = new SelectList(roles, "Id", "Name", user.RoleId);
 
             // Model validation failed
             TempData["error"] = "Model validation failed.";
