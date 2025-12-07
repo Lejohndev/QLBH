@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyWebApp.Models;
 using MyWebApp.Repository;
+using MyWebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 //Connectuon db
@@ -32,6 +33,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddRazorPages();
+
+// Register recommendation service
+builder.Services.AddScoped<IRecommendationService, RecommendationService>();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {

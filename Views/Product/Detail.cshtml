@@ -1,4 +1,5 @@
 ﻿@using MyWebApp.Models.ViewModels
+@using MyWebApp.Models
 @{
     ViewData["Title"] = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,7 +16,7 @@
                     <img src="~/media/products/@Model.Image" alt="" width="100px" height="200px" />
                     <h3>ZOOM</h3>
                 </div>
-                <div >
+                <div>
                     <div class="carousel-inner">
                         <div class="item active">
                             <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
@@ -32,7 +33,8 @@
                         <span>US $@Model.Price</span>
                         <label>Quantity: 1</label>
                         <input type="text" value="3" />
-                        <a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@Model.Id">
+                        <a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart"
+                            asp-route-Id="@Model.Id">
                             <i class="fa fa-shopping-cart"></i> Add to cart
                         </a>
                     </span>
@@ -66,7 +68,8 @@
                                     <img src="images/home/gallery2.jpg" alt="" />
                                     <h2>$56</h2>
                                     <p>Easy Polo Black Edition</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                    <button type="button" class="btn btn-default add-to-cart"><i
+                                            class="fa fa-shopping-cart"></i>Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +81,8 @@
                                     <img src="images/home/gallery3.jpg" alt="" />
                                     <h2>$56</h2>
                                     <p>Easy Polo Black Edition</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                    <button type="button" class="btn btn-default add-to-cart"><i
+                                            class="fa fa-shopping-cart"></i>Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +94,8 @@
                                     <img src="images/home/gallery4.jpg" alt="" />
                                     <h2>$56</h2>
                                     <p>Easy Polo Black Edition</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                    <button type="button" class="btn btn-default add-to-cart"><i
+                                            class="fa fa-shopping-cart"></i>Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +108,10 @@
                             <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
                             <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in
+                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                         <p><b>Write Your Review</b></p>
                         <form action="#">
                             <span>
@@ -121,6 +129,46 @@
             </div>
         </div>
 
+        <h2 class="title text-center">Recommend Products</h2>
+        <div id="recommended-item-carousel" class="carousel-inner" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    @{
+                        var recommendedProducts = ViewBag.RecommendedProducts as IEnumerable<ProductModel>;
+                    }
+                    @if (recommendedProducts != null && recommendedProducts.Any())
+                    {
+                        @foreach (var recommendedProduct in recommendedProducts)
+                        {
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <a asp-action="Detail" asp-controller="Product" asp-route-Id="@recommendedProduct.Id">
+                                            <div class="productinfo text-center">
+                                                <img src="~/media/products/@recommendedProduct.Image"
+                                                    alt="@recommendedProduct.Name" width="100%" />
+                                                <h2>$@recommendedProduct.Price</h2>
+                                                <p>@recommendedProduct.Name</p>
+                                                <p>Danh mục : @recommendedProduct.Category?.Name</p>
+                                                <p>Thương hiệu : @recommendedProduct.Brand?.Name</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-sm-12">
+                            <p class="text-center">Không có sản phẩm gợi ý.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
         <div class="recommended_items">
             <h2 class="title text-center">Related Products</h2>
             <div id="recommended-item-carousel" class="carousel-inner" data-ride="carousel">
@@ -134,7 +182,8 @@
                                     <div class="single-products">
                                         <a asp-action="Detail" asp-controller="Product" asp-route-Id="@relatedProduct.Id">
                                             <div class="productinfo text-center">
-                                                <img src="~/media/products/@relatedProduct.Image" alt="@relatedProduct.Name" width="100%" />
+                                                <img src="~/media/products/@relatedProduct.Image" alt="@relatedProduct.Name"
+                                                    width="100%" />
                                                 <h2>$@relatedProduct.Price</h2>
                                                 <p>@relatedProduct.Name</p>
                                                 <p>Danh mục : @relatedProduct.Category.Name</p>
@@ -148,6 +197,8 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>
