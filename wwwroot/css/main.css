@@ -2533,4 +2533,32 @@ h2.title {
   color: #FE980F;
 }
 
+#show-more-brands,
+#show-more-categories {
+	background: #FE980F;
+	border: 0 none;
+	border-radius: 0;
+	color: #FFFFFF;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 10px 15px;
+	margin-top: 15px;
+	margin-bottom: 20px;
+	width: 100%;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
 
+	#show-more-brands:hover,
+	#show-more-categories:hover {
+		background: #FDB45E;
+		box-shadow: 0 2px 5px rgba(254, 152, 15, 0.3);
+	}
+
+	#show-more-brands:active,
+	#show-more-categories:active {
+		background: #E68910;
+		transform: scale(0.98);
+	}

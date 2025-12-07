@@ -1,10 +1,50 @@
 ﻿@model IEnumerable<CategoryModel>
 
-@foreach (var item in Model)
-{
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h4 class="panel-title"><a asp-action="Index" asp-controller="Category" asp-route-Slug="@item.Slug">@item.Name</a></h4>
+<div id="categories-container">
+	@{
+		var items = Model.Take(5).ToList();
+		var hasMoreItems = Model.Count() > 5;
+	}
+
+	@foreach (var item in items)
+	{
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title"><a asp-action="Index" asp-controller="Category" asp-route-Slug="@item.Slug">@item.Name</a></h4>
+			</div>
 		</div>
-	</div>
-}
+	}
+
+	@if (hasMoreItems)
+	{
+		<div id="hidden-categories" style="display: none;">
+			@foreach (var item in Model.Skip(5))
+			{
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"><a asp-action="Index" asp-controller="Category" asp-route-Slug="@item.Slug">@item.Name</a></h4>
+					</div>
+				</div>
+			}
+		</div>
+
+		<button id="show-more-categories" class="btn btn-default btn-block" onclick="toggleCategories()">
+			Xem thêm
+		</button>
+	}
+</div>
+
+<script>
+	function toggleCategories() {
+		const hiddenDiv = document.getElementById('hidden-categories');
+		const button = document.getElementById('show-more-categories');
+
+		if (hiddenDiv.style.display === 'none') {
+			hiddenDiv.style.display = 'block';
+			button.textContent = 'Hide';
+		} else {
+			hiddenDiv.style.display = 'none';
+			button.textContent = 'more';
+		}
+	}
+</script>

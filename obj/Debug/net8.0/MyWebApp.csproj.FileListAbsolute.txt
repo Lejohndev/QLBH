@@ -1200,3 +1200,4 @@ D:\MyProject\MyWebApp\obj\Debug\net8.0\ref\MyWebApp.dll
 D:\MyProject\MyWebApp\obj\Debug\net8.0\MyWebApp.sourcelink.json
 D:\MyProject\MyWebApp\obj\Debug\net8.0\swae.build.ex.cache
 D:\MyProject\MyWebApp\bin\Debug\net8.0\rules_top_53_short_id.json
+D:\MyProject\MyWebApp\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
