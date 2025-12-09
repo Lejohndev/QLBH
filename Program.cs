@@ -37,6 +37,9 @@ builder.Services.AddRazorPages();
 // Register recommendation service
 builder.Services.AddScoped<IRecommendationService, RecommendationService>();
 
+// Home recommendation service
+builder.Services.AddScoped<HRecommendationService, HomeRecommendationService>();
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
