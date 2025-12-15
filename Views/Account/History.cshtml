@@ -1,0 +1,97 @@
+﻿@model IEnumerable<OrderModel>
+
+@{
+    ViewData["Title"] = "List History Orders placed by " + " " + @ViewBag.UserEmail;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body>
+
+    <style>
+        h1, h2, h3 {
+            margin-top: 200px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+<h3>List History Orders placed by @ViewBag.UserEmail</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+      
+            <th scope="col">Id</th>
+            <th scope="col">ProductName</th>
+           
+            <th scope="col">Image</th>
+            <th scope="col">Order Status</th>
+            <th scope="col">Created Date</th>
+            <th scope="col">Action</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+              
+            <tr>
+                <td>@item.Id</td>
+                <td>
+                     @foreach (var detail in item.OrderDetails)
+                     {
+                            <li>@detail.Product.Name</li>
+                            <td>
+                            <img src="~/media/products/@detail.Product.Image"
+                                 alt="@detail.Product.Name"
+                                 width="100"
+                                 class="img-thumbnail" />
+                            </td>
+                     }
+                </td>
+              
+                
+              
+
+
+
+                <td>
+                    @if (item.Status == 1)
+                    {
+                        <span class="text text-success">Đợi xử lý</span>
+
+                    }
+                    else if (item.Status == 0)
+                    {
+                        <span class="text text-primary">Đã xử lý</span>
+                    }
+                    else if (item.Status == 2)
+                    {
+                            <span class="text text-primary">đang vận chuyển</span>
+                    }
+                    else
+                    {
+                        <span class="text text-danger">Đã hủy</span>
+                    }
+                </td>
+                <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                <td>
+                    @if (@item.Status != 3 || @item.Status != 0)
+                    {
+
+                        <a onclick="return confirm('Bạn xác nhận muốn hủy?')" class="btn btn-warning btn-sm" asp-action="CancelOrder" asp-controller="Account" asp-route-ordercode="@item.OrderCode">Hủy đơn hàng</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</body>
+</html>

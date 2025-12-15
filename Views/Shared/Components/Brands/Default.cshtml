@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BrandModel>
+
+<div id="brands-container">
+	@{
+		var items = Model.Take(8).ToList();
+		var hasMoreItems = Model.Count() > 8;
+	}
+
+	@foreach (var item in items)
+	{
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title"><a asp-action="Index" asp-controller="Brand"
+						asp-route-Slug="@item.Slug">@item.Name</a></h4>
+			</div>
+		</div>
+	}
+
+	@if (hasMoreItems)
+	{
+		<div id="hidden-brands" style="display: none;">
+			@foreach (var item in Model.Skip(8))
+			{
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"><a asp-action="Index" asp-controller="Brand"
+								asp-route-Slug="@item.Slug">@item.Name</a></h4>
+					</div>
+				</div>
+			}
+		</div>
+
+		<button id="show-more-brands" class="btn btn-default btn-block" onclick="toggleBrands()">
+			Xem thêm
+		</button>
+	}
+</div>
+
+<script>
+	function toggleBrands() {
+		const hiddenDiv = document.getElementById('hidden-brands');
+		const button = document.getElementById('show-more-brands');
+
+		if (hiddenDiv.style.display === 'none') {
+			hiddenDiv.style.display = 'block';
+			button.textContent = 'hide';
+		} else {
+			hiddenDiv.style.display = 'none';
+			button.textContent = 'more';
+		}
+	}
+</script>
