@@ -1,0 +1,54 @@
+﻿product_id,product_category_name,product_brand,product_name,product_name_lenght,product_description_lenght,product_photos_qty,product_weight_g,product_length_cm,product_height_cm,product_width_cm
+PRD_00001,electronics,Sony,Tai nghe Sony WH-1000XM5,24,415,1,1263,66,12,71
+PRD_00002,electronics,Samsung,Smart TV Samsung 55 inch 4K,27,203,4,6384,8,27,44
+PRD_00003,electronics,Xiaomi,Máy lọc không khí Xiaomi 4 Lite,31,149,3,1718,42,36,59
+PRD_00004,electronics,JBL,Loa Bluetooth JBL Charge 5,26,203,4,3182,62,25,42
+PRD_00005,electronics,LG,Màn hình LG 27 inch IPS,23,176,1,3980,33,32,65
+PRD_00006,electronics,Panasonic,Máy ảnh Panasonic Lumix,23,433,3,4767,61,26,60
+PRD_00007,electronics,Apple,AirPods Pro (Gen 2),19,391,1,4712,20,6,63
+PRD_00008,computers_accessories,ASUS,Laptop ASUS VivoBook 15,23,139,3,4397,34,21,54
+PRD_00009,computers_accessories,Apple,Laptop MacBook Air M2,21,349,2,7732,13,37,17
+PRD_00010,computers_accessories,Dell,Laptop Dell XPS 13,18,296,5,6913,60,53,61
+PRD_00011,computers_accessories,Logitech,Chuột Logitech MX Master 3S,27,381,5,6531,32,10,19
+PRD_00012,computers_accessories,Keychron,Bàn phím cơ Keychron K6,23,121,5,3415,65,9,47
+PRD_00013,computers_accessories,Seagate,Ổ cứng di động Seagate 1TB,26,486,2,2605,25,23,53
+PRD_00014,home_appliances,Sharp,Nồi cơm điện Sharp 1.8L,23,143,3,5492,61,5,27
+PRD_00015,home_appliances,Panasonic,Máy sấy tóc Panasonic EH-NA,27,212,5,2963,24,21,78
+PRD_00016,home_appliances,Philips,Nồi chiên không dầu Philips 4.1L,32,465,3,1765,39,21,27
+PRD_00017,home_appliances,Electrolux,Máy hút bụi Electrolux,22,207,4,3298,64,30,13
+PRD_00018,home_appliances,Sunhouse,Ấm siêu tốc Sunhouse 1.7L,25,319,4,3560,35,12,64
+PRD_00019,furniture,Nội thất OEM,Bàn làm việc gỗ tự nhiên,24,176,4,2932,54,39,24
+PRD_00020,furniture,Nội thất OEM,Ghế công thái học lưng lưới,27,157,3,2838,39,49,19
+PRD_00021,furniture,Nội thất OEM,Kệ sách 5 tầng,14,217,4,2227,55,58,12
+PRD_00022,furniture,IKEA,Tủ quần áo 2 cánh,17,287,1,1992,75,50,78
+PRD_00023,furniture,Nội thất OEM,Bàn trà phòng khách,19,366,3,1262,69,40,77
+PRD_00024,fashion_men,Uniqlo,Áo thun nam Uniqlo Airism,25,466,4,5814,64,19,50
+PRD_00025,fashion_men,Nike,Áo khoác thể thao Nike,22,312,2,2891,19,55,67
+PRD_00026,fashion_men,Adidas,Quần jogger Adidas,18,206,2,5203,16,42,32
+PRD_00027,fashion_men,Levi's,Quần jeans Levi's 511,21,261,4,7134,26,17,15
+PRD_00028,fashion_men,Zara,Sơ mi nam Zara slimfit,22,153,4,1879,62,19,69
+PRD_00029,fashion_women,Uniqlo,Áo len nữ Uniqlo,16,313,2,7642,52,2,23
+PRD_00030,fashion_women,Zara,Đầm nữ Zara midi,16,378,5,5981,59,41,24
+PRD_00031,fashion_women,H&M,Áo khoác nữ H&M,15,361,5,5853,38,55,29
+PRD_00032,fashion_women,Charles & Keith,Túi xách Charles & Keith,24,148,1,7003,59,22,30
+PRD_00033,fashion_women,Converse,Giày Converse Chuck 70,22,274,3,6722,74,56,43
+PRD_00034,beauty_health,Anessa,Kem chống nắng Anessa SPF50+,28,280,4,4525,54,43,30
+PRD_00035,beauty_health,3CE,Son 3CE Velvet Lip Tint,23,246,5,451,14,18,31
+PRD_00036,beauty_health,Cetaphil,Sữa rửa mặt Cetaphil Gentle,27,300,2,3491,54,2,58
+PRD_00037,beauty_health,La Roche-Posay,Kem dưỡng La Roche-Posay Cicaplast,34,175,5,5939,60,54,25
+PRD_00038,beauty_health,Dior,Nước hoa Dior J’adore,21,389,1,4511,55,44,30
+PRD_00039,sports_leisure,Yonex,Vợt cầu lông Yonex,18,147,4,303,15,54,69
+PRD_00040,sports_leisure,Decathlon,Thảm yoga Decathlon 6mm,23,394,5,7508,29,10,9
+PRD_00041,sports_leisure,Adidas,Bóng đá Adidas size 5,21,182,4,3468,54,36,61
+PRD_00042,sports_leisure,Naturehike,Lều cắm trại Naturehike 2P,26,442,4,221,39,9,61
+PRD_00043,sports_leisure,Speedo,Kính bơi Speedo,15,270,4,5517,61,20,9
+PRD_00044,toys,LEGO,Bộ xếp hình LEGO City,21,131,2,277,46,56,52
+PRD_00045,toys,Hasbro,Búp bê Barbie,13,195,4,5167,23,23,76
+PRD_00046,toys,Mattel,Xe mô hình Hot Wheels,21,284,4,6659,45,46,56
+PRD_00047,toys,Montessori OEM,Đồ chơi Montessori gỗ,21,205,4,6489,11,25,12
+PRD_00048,toys,Ravensburger,Tranh ghép hình 1000 mảnh,25,455,4,6164,60,17,74
+PRD_00049,groceries,Vinamilk,Sữa tươi Vinamilk 1L,20,181,3,6391,52,33,54
+PRD_00050,groceries,Acecook,Mì Hảo Hảo thùng 30 gói,23,263,5,7221,72,33,33
+PRD_00051,groceries,Trung Nguyên,Cà phê Trung Nguyên G7,22,379,4,919,34,14,79
+PRD_00052,groceries,Chinsu,Nước mắm Chinsu 500ml,21,423,5,6605,44,33,18
+PRD_00053,groceries,Kinh Đô,Bánh quy Kinh Đô hộp,20,480,4,7028,57,44,6
