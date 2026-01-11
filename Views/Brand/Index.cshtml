@@ -5,7 +5,7 @@
 	</div>
 	<style>
 		.product-image-wrapper {
-			height: 470px;
+			height: 500px;
 		}
 	</style>
 	<div class="col-sm-9 padding-right">
@@ -25,15 +25,16 @@
 									<p>@item.Name</p>
 									<p>Danh mục : @item.Category.Name</p>
 									<p>Thương hiệu : @item.Brand.Name</p>
-									<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@item.Id"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+									<a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart"
+										asp-route-Id="@item.Id"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
-					
+
 							</div>
 						</a>
 						<div class="choose">
 							<ul class="nav nav-pills nav-justified">
 								<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-				
+
 							</ul>
 						</div>
 					</div>

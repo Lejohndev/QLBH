@@ -47,7 +47,7 @@ namespace MyWebApp.Services
             var description = NormalizeText(product.Description ?? "").ToLower();
             var category = NormalizeText(product.Category?.Name ?? "").ToLower();
             var brand = NormalizeText(product.Brand?.Name ?? "").ToLower();
-
+            
             // Chính xác khớp (cao nhất)
             if (name == normalizedKeyword || category == normalizedKeyword || brand == normalizedKeyword)
                 score += 100;
