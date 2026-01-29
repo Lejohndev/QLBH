@@ -106,138 +106,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Brand/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcQnJhbmRcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Brand/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcQnJhbmRcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Brand/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcQnJhbmRcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Category/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Category/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Category/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Product/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Product/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxFZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Product/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Shared/_NotificationPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb25QYXJ0aWFsLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Shared/_SidebarPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9TaWRlYmFyUGFydGlhbC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Account/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcQWNjb3VudFxDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Account/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Brand/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcQnJhbmRcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Cart/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Category/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Checkout/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcQ2hlY2tvdXRcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Product/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Product/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Shared/Components/Brands/Default.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcU2hhcmVkXENvbXBvbmVudHNcQnJhbmRzXERlZmF1bHQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Shared/Components/Categories/Default.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ2F0ZWdvcmllc1xEZWZhdWx0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Shared/_NotificationPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb25QYXJ0aWFsLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Shared/_SidebarPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcU2hhcmVkXF9TaWRlYmFyUGFydGlhbC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/MyProject/MyApp/MyWebApp/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/MyProject/MyApp/Views/Account/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -314,6 +182,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/MyProject/MyApp/Views/VietQR/GenerateQrCode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlldFFSXEdlbmVyYXRlUXJDb2RlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/MyProject/MyApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -325,14 +197,6 @@ build_metadata.AdditionalFiles.CssScope =
 [D:/MyProject/MyApp/Areas/Admin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-9ia76w44cx
-
-[D:/MyProject/MyApp/MyWebApp/Areas/Admin/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcQXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-405jtpy7q1
-
-[D:/MyProject/MyApp/MyWebApp/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = TXlXZWJBcHBcVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-t3etldwwq5
 
 [D:/MyProject/MyApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s

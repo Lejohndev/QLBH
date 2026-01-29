@@ -66,7 +66,6 @@ namespace MyWebApp.Areas.Admin.Controllers
                 return BadRequest(errorMessage);
             }
 
-            return View(category);
         }
         [Route("Edit")]
       
@@ -107,7 +106,6 @@ namespace MyWebApp.Areas.Admin.Controllers
                 return BadRequest(errorMessage);
             }
 
-            return View(category);
         }
 
 

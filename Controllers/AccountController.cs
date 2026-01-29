@@ -101,6 +101,14 @@ namespace MyWebApp.Controllers
                 return RedirectToAction("Login", "Account"); // Replace "Account" with your controller name
             }
 
+            // Clear the cart upon visiting the history page after a successful payment.
+            HttpContext.Session.Remove("Cart");
+
+            if (TempData["success"] != null)
+            {
+                ViewBag.SuccessMessage = TempData["success"];
+            }
+
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
 
 

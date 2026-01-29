@@ -1,21 +1,53 @@
-﻿<div class="left-sidebar">
-	<h2>Category</h2>
-	<div class="panel-group category-products" id="accordian">
-		<!--category-productsr-->
-		
-		
-		<vc:categories></vc:categories>
-		 
-	</div><!--/category-products-->
+﻿@{
+    var currentPriceRange = ViewBag.PriceRange as string ?? "";
+}
+<div class="filter-sidebar">
+    <div class="filter-group">
+        <h3 class="filter-group-title">Lọc theo giá</h3>
+        <form asp-action="Index" asp-controller="Home" method="get" class="price-filter-form">
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="priceRange" id="price-all" value="" @(currentPriceRange == "" ? "checked" : "")>
+                    <label class="form-check-label" for="price-all">
+                        Tất cả
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="priceRange" id="price-1" value="0-100000" @(currentPriceRange == "0-100000" ? "checked" : "")>
+                    <label class="form-check-label" for="price-1">
+                        0 - 100.000
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="priceRange" id="price-2" value="100000-500000" @(currentPriceRange == "100000-500000" ? "checked" : "")>
+                    <label class="form-check-label" for="price-2">
+                        100.000 - 500.000
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="priceRange" id="price-3" value="500000-1000000" @(currentPriceRange == "500000-1000000" ? "checked" : "")>
+                    <label class="form-check-label" for="price-3">
+                        500.000 - 1.000.000
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="priceRange" id="price-4" value="1000000-0" @(currentPriceRange == "1000000-0" ? "checked" : "")>
+                    <label class="form-check-label" for="price-4">
+                        Trên 1.000.000
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-apply-price">Áp dụng</button>
+        </form>
+    </div>
 
-	<h2>Brand</h2>
-	<div class="panel-group category-products" id="accordian">
-		<!--category-productsr-->
+    <div class="filter-group">
+        <h3 class="filter-group-title">Danh mục</h3>
+        <vc:categories></vc:categories>
+    </div>
 
-
-		<vc:brands></vc:brands>
-
-	</div><!--/category-products-->
-
-	
+    <div class="filter-group">
+        <h3 class="filter-group-title">Thương hiệu</h3>
+        <vc:brands></vc:brands>
+    </div>
 </div>

@@ -7,7 +7,7 @@ using MyWebApp.Models;
 using MyWebApp.Models.ViewModels;
 using MyWebApp.Repository;
 
-namespace MyWebApp.Areas.Admin.Controllers
+namespace MyWebApp.Controllers
 {
     [Authorize]
     public class CheckoutController : Controller
@@ -48,6 +48,7 @@ namespace MyWebApp.Areas.Admin.Controllers
                 await _dataContext.SaveChangesAsync();
 
                 List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+                decimal totalAmount = 0;
                 foreach (var cart in cartItems)
                 {
                     var orderdetails = new OrderDetails
@@ -63,13 +64,11 @@ namespace MyWebApp.Areas.Admin.Controllers
                     };
                     _dataContext.Add(orderdetails);
                     await _dataContext.SaveChangesAsync(); // Use async method
-
+                    totalAmount += cart.Price * cart.Quantity;
                 }
-                HttpContext.Session.Remove("Cart");
-                TempData["success"] = "Checkout thành công, vui lòng chờ duyệt đơn hàng";
-                return RedirectToAction("Index", "Cart");
+                
+                return RedirectToAction("GenerateQrCode", "VietQR", new { i = orderItem.Id });
             }
-            return View();
         }
     }
 }

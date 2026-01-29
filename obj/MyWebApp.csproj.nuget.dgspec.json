@@ -57,7 +57,7 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.21, )"
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -81,7 +81,7 @@
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[13.0.3, )"
             },
             "PagedList.Core.Mvc": {
               "target": "Package",

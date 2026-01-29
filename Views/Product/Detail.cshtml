@@ -1,214 +1,161 @@
-﻿@using MyWebApp.Models.ViewModels
-@using MyWebApp.Models
+﻿@model ProductModel
+
 @{
-    ViewData["Title"] = "Detail";
+    ViewData["Title"] = Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    .product-image-wrapper {
-        height: 500px;
-    }
-</style>
-<div class="row">
-    <div class="col-sm-3">
-        <partial name="_SidebarPartial" />
-    </div>
-    <div class="col-sm-9 padding-right">
-        <div class="product-details">
-            <div class="col-sm-5">
-                <div class="view-product">
-                    <img src="~/media/products/@Model.Image" alt="" width="100px" height="200px" />
-                    <h3>ZOOM</h3>
-                </div>
-                <div>
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-                            <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-7">
-                <div class="product-information">
-                    <h2>@Model.Name</h2>
-                    <span>
-                        <span>@Model.Price.ToString("#,##0 VNĐ")</span>
-                        <label>Quantity: 1</label>
-                        <input type="text" value="3" />
-                        <a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart"
-                            asp-route-Id="@Model.Id">
-                            <i class="fa fa-shopping-cart"></i> Add to cart
-                        </a>
-                    </span>
-                    <p><b>Availability:</b> In Stock</p>
-                    <p><b>Condition:</b> New</p>
-                    <p><b>Brand:</b> @Model.Brand.Name</p>
-                    <p><b>Category:</b> @Model.Category.Name</p>
-                    <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
-                </div>
+
+
+
+
+<div class="container product-detail-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumb-section">
+                <a asp-action="Index" asp-controller="Home">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <a asp-action="Index" asp-controller="Category"
+                    asp-route-slug="@Model.Category.Slug">@Model.Category.Name</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">@Model.Name</span>
             </div>
         </div>
+    </div>
 
-        <div class="category-tab shop-details-tab">
-            <div class="col-sm-12">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#details" data-toggle="tab">Details</a></li>
-                    <li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
-                    <li><a href="#tag" data-toggle="tab">Tag</a></li>
-                    <li><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
-                </ul>
+    <div class="product-main-panel">
+        <div class="row">
+
+            <!-- Left: Product Image Gallery -->
+            <div class="col-md-7">
+
+                <div class="product-image-gallery">
+                    <div class="main-image">
+                        <img src="~/media/products/@Model.Image" alt="@Model.Name" />
+                    </div>
+                    <!-- Thumbnails can be added here if needed -->
+                </div>
             </div>
-            <div class="tab-content">
-                <div class="tab-pane fade active in" id="details">
-                    @Html.Raw(Model.Description)
-                </div>
-                <div class="tab-pane fade" id="companyprofile">
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="images/home/gallery2.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-shopping-cart"></i>Add to cart</button>
-                                </div>
+
+            <!-- Right: Product Info & Purchase -->
+            <div class="col-md-5">
+                <div class="product-info-panel">
+                    <h1>@Model.Name</h1>
+
+                    <div class="price-section">
+                        <div class="price-label">Giá bán:</div>
+                        <div class="current-price">@Model.Price.ToString("#,##0") ₫</div>
+                    </div>
+
+                    <div class="product-short-description">
+                        @Html.Raw(Model.Description.Substring(0, Math.Min(Model.Description.Length, 200)) + "...")
+                    </div>
+
+                    <form id="add-to-cart-form">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <div class="quantity-section">
+                            <label for="quantityInput">Số lượng:</label>
+                            <div class="quantity-input-group">
+                                <button type="button" onclick="updateQty(-1)">-</button>
+                                <input id="quantityInput" name="quantity" value="1" min="1" />
+                                <button type="button" onclick="updateQty(1)">+</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="images/home/gallery3.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-shopping-cart"></i>Add to cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="images/home/gallery4.jpg" alt="" />
-                                    <h2>$56</h2>
-                                    <p>Easy Polo Black Edition</p>
-                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                            class="fa fa-shopping-cart"></i>Add to cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="reviews">
-                    <div class="col-sm-12">
-                        <ul>
-                            <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                            <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                            <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        <p><b>Write Your Review</b></p>
-                        <form action="#">
-                            <span>
-                                <input type="text" placeholder="Your Name" />
-                                <input type="email" placeholder="Email Address" />
-                            </span>
-                            <textarea name=""></textarea>
-                            <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-                            <button type="button" class="btn btn-default pull-right">
-                                Submit
+                        <div class="action-buttons">
+                            <button type="button" id="add-to-cart-button" class="btn btn-add-to-cart">
+                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
                             </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="title text-center">Recommend Products</h2>
-        <div id="recommended-item-carousel" class="carousel-inner" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="item active">
-                    @{
-                        var recommendedProducts = ViewBag.RecommendedProducts as IEnumerable<ProductModel>;
-                    }
-                    @if (recommendedProducts != null && recommendedProducts.Any())
-                    {
-                        @foreach (var recommendedProduct in recommendedProducts)
-                        {
-                            <div class="col-sm-4">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <a asp-action="Detail" asp-controller="Product" asp-route-Id="@recommendedProduct.Id">
-                                            <div class="productinfo text-center">
-                                                <img src="~/media/products/@recommendedProduct.Image"
-                                                    alt="@recommendedProduct.Name" width="100%" />
-                                                <h2>@recommendedProduct.Price.ToString("#,##0 VNĐ")</h2>
-                                                <p>@recommendedProduct.Name</p>
-                                                <p>Danh mục : @recommendedProduct.Category?.Name</p>
-                                                <p>Thương hiệu : @recommendedProduct.Brand?.Name</p>
-                                                <a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@recommendedProduct.Id"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <div class="col-sm-12">
-                            <p class="text-center">Không có sản phẩm gợi ý.</p>
+                            <a id="buy-now-button" class="btn btn-buy-now">
+                                <i class="fa fa-dollar"></i> Mua ngay
+                            </a>
                         </div>
-                    }
+                    </form>
                 </div>
             </div>
-        </div>
-
-
-        <div class="recommended_items">
-            <h2 class="title text-center">Related Products</h2>
-            <div id="recommended-item-carousel" class="carousel-inner" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="item active">
-                        @foreach (var relatedProduct in @ViewBag.RelatedProducts as IEnumerable<ProductModel>)
-                        {
-                            <div class="col-sm-4">
-                                <div class="product-image-wrapper">
-
-                                    <div class="single-products">
-                                        <a asp-action="Detail" asp-controller="Product" asp-route-Id="@relatedProduct.Id">
-                                            <div class="productinfo text-center">
-                                                <img src="~/media/products/@relatedProduct.Image" alt="@relatedProduct.Name"
-                                                    width="100%" />
-                                                <h2>@relatedProduct.Price.ToString("#,##0 VNĐ")</h2>
-                                                <p>@relatedProduct.Name</p>
-                                                <p>Danh mục : @relatedProduct.Category.Name</p>
-                                                <a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@relatedProduct.Id"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-
-
         </div>
     </div>
-</div>
-@section Scripts {
+
+    <!-- Description, Reviews Tabs -->
+    <div class="product-description-tabs">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#description" data-toggle="tab">Mô tả sản phẩm</a></li>
+            <li><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="description"> @Html.Raw(Model.Description)
+            </div>
+            <div class="tab-pane fade" id="reviews">
+                <p>Chưa có đánh giá nào cho sản phẩm này.</p>
+                <!-- Review submission form can go here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        var relatedProducts = ViewBag.RelatedProducts as IEnumerable<ProductModel>;
     }
+    @if (relatedProducts != null && relatedProducts.Any())
+    {
+        <div class="related-products-section">
+            <div class="text-center">
+                <h2 class="section-title">Sản phẩm liên quan</h2>
+            </div>
+            <div class="row">
+                @foreach (var relatedProduct in relatedProducts)
+                {
+                    <div class="col-xs-6 col-md-4 col-lg-3 product-card-wrapper">
+                        <div class="product-card">
+                            <a asp-action="Detail" asp-controller="Product" asp-route-Id="@relatedProduct.Id"
+                                class="product-link">
+                                <div class="product-image-wrapper-new">
+                                    <img src="~/media/products/@relatedProduct.Image" alt="@relatedProduct.Name"
+                                        class="product-main-image" />
+                                </div <div class="product-details-new">
+                                <div class="product-category-badge-new">@relatedProduct.Category.Name</div>
+                                <h3 class="product-name-new">@relatedProduct.Name</h3>
+                                <div class="product-price-section">
+                                    <span class="product-price-new">@relatedProduct.Price.ToString("#,##0")
+                                        ₫</span>
+                                    <button type="button" class="btn-add-to-cart-circle ajax-add-to-cart" data-id="@relatedProduct.Id">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function updateQty(change) {
+            const input = document.getElementById('quantityInput');
+            let currentValue = parseInt(input.value);
+            let newValue = currentValue + change;
+
+            if (newValue < 1) {
+                newValue = 1;
+            }
+            input.value = newValue;
+        }
+
+        document.getElementById('quantityInput').addEventListener('input', function (e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (parseInt(this.value) < 1 || this.value === '') {
+                this.value = '1';
+            }
+        });
+
+        $('#buy-now-button').on('click', function(e) {
+            e.preventDefault();
+            const form = $('#add-to-cart-form');
+            const productId = form.find('input[name="Id"]').val();
+            const quantity = form.find('input[name="quantity"]').val();
+            window.location.href = `/Cart/BuyNow?Id=${productId}&quantity=${quantity}`;
+        });
+    </script>
 }

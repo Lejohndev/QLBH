@@ -63,7 +63,6 @@ namespace MyWebApp.Areas.Admin.Controllers
                 string errorMessage = string.Join("\n", errors);
                 return BadRequest(errorMessage);
             }
-            return View(brand);
         }
         [Route("Edit")]
         public async Task<IActionResult> Edit(int Id)
@@ -100,7 +99,6 @@ namespace MyWebApp.Areas.Admin.Controllers
                 string errorMessage = string.Join("\n", errors);
                 return BadRequest(errorMessage);
             }
-            return View(brand);
         }
         public async Task<IActionResult> Delete(int Id)
         {

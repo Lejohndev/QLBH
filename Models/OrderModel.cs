@@ -11,6 +11,7 @@ namespace MyWebApp.Models
         public int Status { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
         public ICollection<OrderAddress> OrderAddresses { get; set; }
-
+        [NotMapped]
+        public decimal? Total { get; set; }
     }
 }

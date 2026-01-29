@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MyWebApp.Models.ViewModels;
 using MyWebApp.Models;
 using MyWebApp.Repository;
 using MyWebApp.Services;
@@ -22,22 +23,40 @@ public class HomeController : Controller
         _recommendationService = recommendationService;
     }
 
-    public async Task<IActionResult> Index(int? page)
+    public async Task<IActionResult> Index(int? page, string priceRange)
     {
         // Cấu hình số trang và số lượng sản phẩm
         var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-        var pageSize = 9;
+        var pageSize = 8;
 
         // 3. Tạo truy vấn (Lưu ý: Không dùng ToListAsync ở đây)
-        var productsQuery = _dataContext.Products
+        IQueryable<ProductModel> productsQuery = _dataContext.Products
             .AsNoTracking() // Tối ưu hiệu suất cho việc đọc dữ liệu
             .Include(p => p.Category)
-            .Include(p => p.Brand)
-            .OrderByDescending(p => p.Id); // Bắt buộc phải sắp xếp khi phân trang
+            .Include(p => p.Brand);
+
+        if (!string.IsNullOrEmpty(priceRange))
+        {
+            var priceValues = priceRange.Split('-').Select(v => decimal.Parse(v)).ToList();
+            var minPrice = priceValues[0];
+            var maxPrice = priceValues[1];
+
+            if (maxPrice == 0)
+            {
+                productsQuery = productsQuery.Where(p => p.Price >= minPrice);
+            }
+            else
+            {
+                productsQuery = productsQuery.Where(p => p.Price >= minPrice && p.Price <= maxPrice);
+            }
+            ViewBag.PriceRange = priceRange;
+        }
+
+        var orderedProductsQuery = productsQuery.OrderByDescending(p => p.Id); // Bắt buộc phải sắp xếp khi phân trang
 
         // 4. Thực hiện phân trang
         // PagedList sẽ tự động tính toán Skip/Take dựa trên pageNumber và pageSize
-        PagedList<ProductModel> models = new PagedList<ProductModel>(productsQuery, pageNumber, pageSize);
+        PagedList<ProductModel> models = new PagedList<ProductModel>(orderedProductsQuery, pageNumber, pageSize);
 
         // --- Giữ nguyên Logic Recommendation của bạn ---
         var recommendedProducts = new List<ProductModel>();

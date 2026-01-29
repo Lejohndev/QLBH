@@ -19,16 +19,23 @@ namespace MyWebApp.Repository
         public DbSet<StatisticalModel> Statistical { get; set; }
         public DbSet<OrderAddress> OrderAddresses { get; set; }
 
+        public DbSet<VietQRPaymentNotification> VietQRPaymentNotifications { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            
             base.OnModelCreating(builder);
+            
 
+   
+            builder.Entity<VietQRPaymentNotification>().HasNoKey();
             builder.Entity<AppUserModel>()
                 .HasOne(u => u.Role)
                 .WithMany()
                 .HasForeignKey(u => u.RoleId)
                 .OnDelete(DeleteBehavior.Restrict); // Rất quan trọng
+                
         }
     }
 }

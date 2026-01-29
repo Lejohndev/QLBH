@@ -1,0 +1,129 @@
+@{
+    ViewData["Title"] = "Thanh toán VietQR";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Quét mã để thanh toán</h1>
+    <p>Vui lòng quét mã QR dưới đây bằng ứng dụng ngân hàng của bạn để hoàn tất thanh toán.</p>
+<style>
+    
+</style>
+
+<div class="qr-container">
+    @if (ViewBag.QrCodeUrl != null && ViewBag.OrderCode != null && ViewBag.Amount != null)
+     {
+       
+        
+        <div class="qr-card">
+            <div class="qr-header">
+                <h1>Quét mã để thanh toán</h1>
+                <p>Sử dụng ứng dụng ngân hàng hoặc ví điện tử để hoàn tất thanh toán.</p>
+            </div>
+ 
+       
+            <img src="@ViewBag.QrCodeUrl" alt="VietQR Code" class="qr-code-image" />
+
+            <div class="payment-info">
+                <div class="info-row">
+                    <span class="info-label">Ngân hàng</span>
+                    <span class="info-value">@ViewBag.BankName</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Số tài khoản</span>
+                    <div class="info-value">
+                        <span id="account-number">@ViewBag.BankAccountNumber</span>
+                        <svg class="copy-icon" onclick="copyToClipboard('account-number', this)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Số tiền</span>
+                    <span class="info-value"><strong>@ViewBag.Amount.ToString("N0") VNĐ</strong></span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Nội dung</span>
+                    <div class="info-value">
+                         <span id="order-code">@ViewBag.OrderCode</span>
+                         <svg class="copy-icon" onclick="copyToClipboard('order-code', this)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div id="payment-status" class="mt-2 mb-4">
+                 <p>Trạng thái: <span class="badge bg-warning text-dark">Đang chờ thanh toán</span></p>
+                <small class="text-muted">Mã sẽ hết hạn trong 5 phút</small>
+             </div>
+             
+        
+            <a href="/" class="btn btn-outline-secondary mt-3">Hủy bỏ</a>
+        </div>
+     }
+     else
+     {
+        <p class="text-danger">Không thể tạo mã QR hoặc không tìm thấy mã đơn hàng. Vui lòng thử lại.</p>
+        <div class="alert alert-danger">
+            <h4 class="alert-heading">Đã xảy ra lỗi!</h4>
+            <p>Không thể tạo mã QR hoặc không tìm thấy mã đơn hàng. Vui lòng quay lại giỏ hàng và thử lại.</p>
+            <hr>
+            <a href="/Cart" class="btn btn-secondary">Quay lại giỏ hàng</a>
+        </div>
+     }
+ </div>
+ 
+ @section Scripts {
+    <script>
+        function copyToClipboard(elementId, iconElement) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalIconPath = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
+                const successIconPath = '<polyline points="20 6 9 17 4 12"></polyline>';
+                
+                iconElement.innerHTML = successIconPath;
+                iconElement.classList.add('copy-icon-success');
+
+                setTimeout(() => {
+                    iconElement.innerHTML = originalIconPath;
+                    iconElement.classList.remove('copy-icon-success');
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Không thể sao chép. Vui lòng thử lại.');
+            });
+        }
+
+        $(document).ready(function () {
+            const orderCode = "@ViewBag.OrderCode";
+            if (orderCode) {
+                let intervalId;
+
+                // Set a timeout to stop polling after 5 minutes
+                const pollingTimeout = setTimeout(function() {
+                    clearInterval(intervalId);
+                    console.log("Polling stopped due to timeout.");
+                    $('#payment-status').html('<p class="badge bg-danger">Hết thời gian thanh toán. Vui lòng thử lại.</p>');
+                }, 300000); // 5 minutes
+
+                function checkPaymentStatus() {
+                    $.get(`/VietQR/CheckPaymentStatus?orderCode=${orderCode}`, function (data) {
+                        if (data.status === 2) { // 2 = Paid
+                            clearInterval(intervalId); // Stop polling
+                            clearTimeout(pollingTimeout); // Clear the timeout
+                            $('#payment-status').html('<p class="badge bg-success fs-5">Thanh toán thành công! Đang chuyển hướng...</p>');
+                            
+                            // Redirect to order history after a short delay
+                            setTimeout(function () {
+                                window.location.href = "/Account/History";
+                            }, 2000); // 2 seconds
+                        }
+                    }).fail(function() {
+                        console.error("Failed to check payment status.");
+                        clearInterval(intervalId); // Stop on failure to avoid spamming
+                        clearTimeout(pollingTimeout);
+                    });
+                }
+
+                // Poll every 3 seconds
+                intervalId = setInterval(checkPaymentStatus, 3000);
+            }
+        });
+    </script>
+}

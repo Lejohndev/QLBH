@@ -14,16 +14,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home | ECOSHOP</title>
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/ProductDetail.css" />
+    <link rel="stylesheet" href="~/css/Cart.css" />
+    <link rel="stylesheet" href="~/css/Partial.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="~/css/prettyPhoto.css" rel="stylesheet">
+
     <link rel="stylesheet" href="~/css/Home.css" />
     <link href="~/css/price-range.css" rel="stylesheet">
     <link href="~/css/animate.css" rel="stylesheet">
     <link href="~/css/main.css" rel="stylesheet">
     <link href="~/css/responsive.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true" />
     <link rel="shortcut icon" href="~/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
@@ -41,84 +45,104 @@
     <header id="header">
         <div class="header_top">
             <div class="header-wrapper">
-                <!-- Hamburger Button -->
-                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open Menu">
-                    <div class="hamburger-icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <span>All</span>
-                </button>
 
-                <div class="col-sm-3">
+
+                <div class="logo-container">
+                    <a asp-action="Index" asp-controller="Home" class="logo-link">
+                        <i class="fa fa-shopping-bag logo-icon"></i>
+                        <span class="logo-text">ECOSHOP</span>
+                    </a>
+                </div>
+
+
+
+
+                <div class="search-container">
                     <form asp-controller="Product" asp-action="Search" method="post">
-
-                        <div class="search_box pull-left">
-                            <input type="text" placeholder="Search" name="keyword" />
-                            <button class="btn btn-warning" type="submit">Search</button>
+                        <div class="search_box">
+                            <input type="text" placeholder="Nhập nội dung cần tìm..." name="keyword" />
+                            <button type="submit" class="search-icon-btn">
+                                <i class="fa fa-search"></i>
+                            </button>
                         </div>
                     </form>
                 </div>
 
 
-                <!-- Logo -->
-                <div class="logo zoom">
-                    <a asp-action="Index" asp-controller="Home">ECOSHOP</a>
-                </div>
-
-
-
-                <!-- Header Actions -->
                 <div class="header-actions">
-                    <div class="shop-menu">
-                        <ul>
-                            <li>
-                                <a asp-action="Index" asp-controller="Cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span class="menu-text">Cart</span>
-                                </a>
-                            </li>
-                            @if (User.Identity?.IsAuthenticated ?? false)
-                            {
-                                <li>
-                                    <a asp-controller="Account" asp-action="Logout">
-                                        <i class="fa fa-user"></i>
-                                        <span class="menu-text">Hi, @User.Identity.Name</span>
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li>
-                                    <a asp-controller="Account" asp-action="Login">
-                                        <i class="fa fa-lock"></i>
-                                        <span class="menu-text">Login</span>
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                    <!-- Contact Info -->
-                    @* <div class="contactinfo">
-                        <ul>
-                            <li><a href="tel:+1234567890" title="Phone"><i class="fa fa-phone"></i></a></li>
-                            <li><a href="mailto:info@ecoshop.com" title="Email"><i class="fa fa-envelope"></i></a></li>
-                        </ul>
-                    </div> *@
+                    <div class="header-action-item header-account">
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <a asp-controller="Account" asp-action="History" class="header-action-btn account-btn">
+                                <i class="fa fa-user"></i>
+                                <span class="account-text">Hi, @User.Identity.Name</span>
+                            </a>
 
-                    <!-- Social Icons -->
-                    @* <div class="social-icons">
-                        <ul>
-                            <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
-                    </div> *@
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="header-action-btn login-btn">
+                                <i class="fa fa-lock"></i>
+                                <span class="login-text">Login</span>
+                            </a>
+                        }
+                    </div>
+                    <div class="header-action-item header-cart">
+                        @await Component.InvokeAsync("Cart")
+                    </div>
+                    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open Menu">
+                        <div class="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>
-        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <div class="bottom-flex">
+
+                    <div class="category-menu-wrapper">
+                        <button class="btn-category" onclick="openSidebar()">
+                            <i class="fa fa-bars"></i>
+                            <span>Danh mục</span>
+                            <i class="fa fa-angle-down ml-2"></i>
+                        </button>
+                    </div>
+
+                    <nav class="main-nav">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-steam"></i> Game Steam
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-gamepad"></i> Game Online
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-xbox"></i> Xbox Game Pass
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-user-shield"></i> Tài khoản Full
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-netflix"></i> Netflix
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -202,10 +226,7 @@
                                     </a>
                                 </li>
                             }
-                            <a href="#" style="color: #e74c3c;">
-                                <i class="fa fa-sign-out" style="color: #e74c3c;"></i>
-                                Logout
-                            </a>
+
                             </li>
                         </ul>
                     </div>
@@ -346,50 +367,68 @@
 
 
     @if (controller == "Home" && action == "Index")//Chỉ để Slider tại trang chủ
-
     {
 
-
-
-        <div class="slider-section">
-            <div class="slider-container">
-                <div class="slider-wrapper">
-                    <!-- Slide 1 -->
-                    <div class="slide active">
-                        <img src="/images/1.png" alt="Slider Image 1">
+        <!-- PROMOTIONAL CARDS CAROUSEL -->
+        <div class="promo-carousel-wrapper">
+            <div class="promo-carousel-container" id="promoCarousel">
+                <!-- Card 1 - New Year Sale -->
+                <div class="promo-card">
+                    <div class="promo-card-image">
+                        <img src="~/images/1.jpg" alt="New Year Sale">
                     </div>
-
-                    <!-- Slide 2 -->
-                    <div class="slide">
-                        <img src="/images/4.jpg" alt="Slider Image 2">
+                    <div class="promo-card-overlay">
+                        <h3 class="promo-card-title">LUNAR NEW YEAR</h3>
+                        <p class="promo-card-text">Khuyến mãi lớn cuối năm</p>
+                        <a href="#" class="promo-card-btn"><i class="fa fa-arrow-right"></i></a>
                     </div>
+                </div>
 
-                    <!-- Slide 3 -->
-                    <div class="slide">
-                        <img src="/images/HP_Portrait_Gucci-TierII-SS25-Jan25-SS25TIERII-STILLLIFE-S-01-0139_001_Default.png"
-                            alt="Slider Image 3">
+                <!-- Card 2 - Game Pass -->
+                <div class="promo-card">
+                    <div class="promo-card-image">
+                        <img src="~/images/2.jpg" alt="Game Pass">
                     </div>
+                    <div class="promo-card-overlay">
+                        <h3 class="promo-card-title">GAME PASS CORE</h3>
+                        <p class="promo-card-text">Chơi game unlimited</p>
+                        <a href="#" class="promo-card-btn"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-                    <!-- Navigation Arrows -->
-                    <button class="slider-arrow prev">
-                        <i class="fa fa-chevron-left"></i>
-                    </button>
-                    <button class="slider-arrow next">
-                        <i class="fa fa-chevron-right"></i>
-                    </button>
+                <!-- Card 3 - Premium Collection -->
+                <div class="promo-card">
+                    <div class="promo-card-image">
+                        <img src="~/images/3.jpg" alt="Premium">
+                    </div>
+                    <div class="promo-card-overlay">
+                        <h3 class="promo-card-title">PREMIUM COLLECTION</h3>
+                        <p class="promo-card-text">Bộ sưu tập đặc biệt</p>
+                        <a href="#" class="promo-card-btn"><i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
 
-                    <!-- Navigation Dots -->
-                    <div class="slider-nav">
-                        <div class="nav-dot active" data-slide="0"></div>
-                        <div class="nav-dot" data-slide="1"></div>
-                        <div class="nav-dot" data-slide="2"></div>
+                <!-- Card 4 - Cloud Services -->
+                <div class="promo-card">
+                    <div class="promo-card-image">
+                        <img src="~/images/4.jpg" alt="Cloud Services">
+                    </div>
+                    <div class="promo-card-overlay">
+                        <h3 class="promo-card-title">CLOUD SERVICES</h3>
+                        <p class="promo-card-text">Lưu trữ đám mây an toàn</p>
+                        <a href="#" class="promo-card-btn"><i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
+
+            <!-- Navigation Arrows -->
+            <button class="carousel-nav carousel-nav-prev" onclick="scrollCarousel(-1)">
+                <i class="fa fa-chevron-left"></i>
+            </button>
+            <button class="carousel-nav carousel-nav-next" onclick="scrollCarousel(1)">
+                <i class="fa fa-chevron-right"></i>
+            </button>
         </div>
-
-
-
         <!--/slider-->
     }
 
@@ -757,6 +796,7 @@
     <script src="~/js/main.js"></script>
     <script src="~/js/site.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+    <script src="~/js/promo-slider.js"></script>
     <script>
         $(function () {
             var message = '@TempData["success"]';

@@ -2,7 +2,7 @@
 using MyWebApp.Models;
 using MyWebApp.Models.ViewModels;
 using MyWebApp.Repository;
-
+using System.Security.Claims;
 namespace MyWebApp.Controllers
 {
   public class CartController : Controller
@@ -21,30 +21,67 @@ namespace MyWebApp.Controllers
         CartItems = cartItems,
         GrandTotal = cartItems.Sum(x => x.Quantity * x.Price)
       };
+      
+      var userEmail = User.FindFirstValue(System.Security.Claims.ClaimTypes.Email);
+      if (userEmail != null)
+      {
+          vm.Address.Email = userEmail;
+      }
+
       return View(vm);
     }
     public IActionResult Checkout()
     {
-      return View("~/Views/Checkout/Index.cshtml");
+      return RedirectToAction("Index", "Checkout");
     }
-    public async Task<IActionResult> Add(long Id)
+    public async Task<IActionResult> Add(long Id, int quantity = 1)
     {
-      ProductModel product = await _dataContext.Products.FindAsync(Id);
-      List<CartItemModel> cart = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
-      CartItemModel cartItem = cart.FirstOrDefault(c => c.ProductId == Id);
+        ProductModel product = await _dataContext.Products.FindAsync(Id);
+        List<CartItemModel> cart = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+        CartItemModel cartItem = cart.FirstOrDefault(c => c.ProductId == Id);
 
-      if (cartItem == null)
-      {
-        cart.Add(new CartItemModel(product));
-      }
-      else
-      {
-        cartItem.Quantity += 1;
-      }
-      HttpContext.Session.SetJson("Cart", cart);
-      TempData["success"] = " Item has been added to cart successfully";
-      return Redirect(Request.Headers["referer"].ToString());
+        if (cartItem == null)
+        {
+            cart.Add(new CartItemModel(product) { Quantity = quantity });
+        }
+        else
+        {
+            cartItem.Quantity += quantity;
+        }
+        HttpContext.Session.SetJson("Cart", cart);
+
+        if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+        {
+            return Json(new { 
+                success = true, 
+                message = "Item has been added to cart successfully", 
+                totalItems = cart.Sum(x => x.Quantity) 
+            });
+        }
+
+        TempData["success"] = " Item has been added to cart successfully";
+        return Redirect(Request.Headers["referer"].ToString());
     }
+
+    public async Task<IActionResult> BuyNow(long Id, int quantity = 1)
+    {
+        ProductModel product = await _dataContext.Products.FindAsync(Id);
+        List<CartItemModel> cart = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+        CartItemModel cartItem = cart.FirstOrDefault(c => c.ProductId == Id);
+
+        if (cartItem == null)
+        {
+            cart.Add(new CartItemModel(product) { Quantity = quantity });
+        }
+        else
+        {
+            cartItem.Quantity += quantity;
+        }
+        HttpContext.Session.SetJson("Cart", cart);
+        
+        return RedirectToAction("Index");
+    }
+
     [HttpPost]
     public IActionResult Increase(long Id)
     {
