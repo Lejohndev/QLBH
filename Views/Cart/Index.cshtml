@@ -6,7 +6,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"]
+    </div>
+}
+
 <div class="cart-container">
+
+    @if (TempData["info"] != null)
+    {
+        <div class="alert alert-info" role="alert">
+            @TempData["info"]
+        </div>
+    }
     <div class="cart-header">
         <h1>Giỏ hàng của bạn</h1>
     </div>
@@ -62,71 +76,63 @@
             </div>
         </div>
 
-        @if (User.Identity?.IsAuthenticated == true)
-        {
-            <div class="checkout-form" id="checkout-form-section">
-                <h2>Thông tin giao hàng</h2>
-                <form asp-controller="Checkout" asp-action="Checkout" method="post">
-                    @Html.AntiForgeryToken()
-                    <div class="shopper-informations">
-                        <div class="row">
-                            <div class="col-sm-6 clearfix">
-                                <div class="bill-to">
-                                    <p>Chi tiết hóa đơn</p>
-                                    <div class="form-one">
-                                        <div class="form-group">
-                                            <input asp-for="Address.Email" class="form-control" placeholder="Email *" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input asp-for="Address.FullName" class="form-control" placeholder="Họ và tên *" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input asp-for="Address.Address1" class="form-control" placeholder="Địa chỉ 1 *" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input asp-for="Address.Address2" class="form-control" placeholder="Địa chỉ 2" />
-                                        </div>
+
+        <div class="checkout-form" id="checkout-form-section">
+            <h2>Thông tin giao hàng</h2>
+            <form asp-controller="Checkout" asp-action="Checkout" method="post">
+                @Html.AntiForgeryToken()
+                <div class="shopper-informations">
+                    <div class="row">
+                        <div class="col-sm-6 clearfix">
+                            <div class="bill-to">
+                                <p>Chi tiết hóa đơn</p>
+                                <div class="form-one">
+                                    <div class="form-group">
+                                        <input asp-for="Address.Email" class="form-control" placeholder="Email *"
+                                            required />
+                                        <span asp-validation-for="Address.Email" class="text-danger"></span>
                                     </div>
-                                    <div class="form-two">
-                                        <div class="form-group">
-                                            <input asp-for="Address.ZipCode" class="form-control" placeholder="Mã bưu điện" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input asp-for="Address.Country" class="form-control" placeholder="Quốc gia" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input asp-for="Address.State" class="form-control" placeholder="Tỉnh/Thành phố" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input asp-for="Address.Phone" class="form-control" placeholder="Số điện thoại *" />
-                                        </div>
+                                    <div class="form-group">
+                                        <input asp-for="Address.FullName" class="form-control" placeholder="Họ và tên *"
+                                            required />
+                                        <span asp-validation-for="Address.FullName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="Address.Phone" class="form-control" placeholder="Số điện thoại *"
+                                            required />
+                                        <span asp-validation-for="Address.Phone" class="text-danger"></span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="order-message">
-                                    <p>Ghi chú đơn hàng</p>
-                                    <textarea asp-for="Address.Note" class="form-control"
-                                        placeholder="Ghi chú về đơn hàng của bạn, ví dụ: thời gian hoặc chỉ dẫn địa điểm giao hàng chi tiết."
-                                        rows="10"></textarea>
+                                <div class="form-two">
+                                    <div class="form-group">
+                                        <input asp-for="Address.ZipCode" class="form-control" placeholder="Mã bưu điện" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="Address.Country" class="form-control" placeholder="Quốc gia" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="Address.State" class="form-control" placeholder="Tỉnh/Thành phố" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="order-message">
+                                <p>Ghi chú đơn hàng</p>
+                                <textarea asp-for="Address.Note" class="form-control"
+                                    placeholder="Ghi chú về đơn hàng của bạn, ví dụ: thời gian hoặc chỉ dẫn địa điểm giao hàng chi tiết."
+                                    rows="10"></textarea>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-right" style="margin-top:15px;">
-                        <button type="submit" class="btn btn-primary">Thanh toán</button>
-                    </div>
-                </form>
-            </div>
-        }
-        else
-        {
-            <div class="register-req">
-                <p>Vui lòng <a asp-controller="Account" asp-action="Login" asp-route-returnurl="/Cart/Index">đăng nhập</a> hoặc
-                    <a asp-controller="Account" asp-action="Create">đăng ký</a> để tiếp tục.
-                </p>
-            </div>
-        }
+                </div>
+                <div class="text-right" style="margin-top:15px;">
+                    <button type="submit" class="btn btn-primary">Thanh toán</button>
+                </div>
+            </form>
+        </div>
+
+
     }
     else
     {
@@ -139,6 +145,8 @@
 </section>
 
 @section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script>
         $(function () {
             // Function to format numbers as Vietnamese currency

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MyProject\\MyApp\\MyWebApp.csproj": {}
+    "D:\\MyProject\\QLBH\\MyWebApp.csproj": {}
   },
   "projects": {
-    "D:\\MyProject\\MyApp\\MyWebApp.csproj": {
+    "D:\\MyProject\\QLBH\\MyWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MyProject\\MyApp\\MyWebApp.csproj",
+        "projectUniqueName": "D:\\MyProject\\QLBH\\MyWebApp.csproj",
         "projectName": "MyWebApp",
-        "projectPath": "D:\\MyProject\\MyApp\\MyWebApp.csproj",
+        "projectPath": "D:\\MyProject\\QLBH\\MyWebApp.csproj",
         "packagesPath": "C:\\Users\\Hi\\.nuget\\packages\\",
-        "outputPath": "D:\\MyProject\\MyApp\\obj\\",
+        "outputPath": "D:\\MyProject\\QLBH\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -54,6 +54,10 @@
             "Accord.MachineLearning": {
               "target": "Package",
               "version": "[3.8.0, )"
+            },
+            "LNT.MailService": {
+              "target": "Package",
+              "version": "[1.1.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -86,6 +90,10 @@
             "PagedList.Core.Mvc": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "payOS": {
+              "target": "Package",
+              "version": "[2.0.1, )"
             }
           },
           "imports": [
@@ -107,7 +115,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200-preview.0.26103.119/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

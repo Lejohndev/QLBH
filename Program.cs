@@ -1,12 +1,17 @@
 ﻿
+using PayOS;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyWebApp.Models;
 using MyWebApp.Repository;
 using MyWebApp.Services;
+using MailSender;
+
 
 var builder = WebApplication.CreateBuilder(args);
-//Connectuon db
+
+// Đăng ký PayOS
+builder.Services.AddSingleton<PayOSService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -39,6 +44,9 @@ builder.Services.AddScoped<IRecommendationService, RecommendationService>();
 // Home recommendation service
 builder.Services.AddScoped<HRecommendationService, HomeRecommendationService>();
 
+// Register PayOS auto-cancellation background service
+
+builder.Services.AddMailService(builder.Configuration);
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
@@ -85,6 +93,7 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+// Add mail service
 
 //seeding data: tạo role và tài khoản admin nếu chưa có
 await SeedData.SeedAdminAsync(app.Services);

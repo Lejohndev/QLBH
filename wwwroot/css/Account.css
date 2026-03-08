@@ -251,7 +251,7 @@ body {
     display: block;
 }
 
-media (max-width: 480px) {
+@media (max-width: 480px) {
     .login-container {
         padding: 32px 24px;
     }
@@ -533,7 +533,7 @@ body {
             text-decoration: underline;
         }
 
-media (max-width: 480px) {
+@media (max-width: 480px) {
     .signup-container {
         padding: 32px 24px;
     }
@@ -561,3 +561,4 @@ keyframes fadeIn {
 }
 
 /*Sign up*/
+/* History order */

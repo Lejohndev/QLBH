@@ -7,7 +7,7 @@ namespace MyWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
  
-    //[Authorize(Roles = "Admin,Seller")]
+    [Authorize(Roles = "Admin,Seller")]
     public class OrderController : Controller
     {
         private readonly DataContext _dataContext;

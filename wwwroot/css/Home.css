@@ -1,4 +1,4 @@
-﻿/* Products Grid Container */
+/* Products Grid Container */
 .products-grid-container {
     display: flex;
     flex-wrap: wrap;
@@ -84,10 +84,10 @@
 
 /* Product Name */
 .product-name-new {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 600;
     color: #333;
-    margin: 0 0 12px 0;
+    margin:0px -1px -30px 0;
     line-height: 1.2;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -95,7 +95,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 56px;
+    height: 70px;
     flex-shrink: 0;
 }
 
@@ -361,7 +361,186 @@
     display: block;
 }
 
+/* ==============================
+   MODERN SIDEBAR & FILTERS
+   ============================== */
+
+.sidebar-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.sidebar-card {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 16px 18px 18px 18px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.sidebar-card-header {
+    margin-bottom: 10px;
+}
+
+.sidebar-card-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0f172a;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.sidebar-card-underline {
+    margin-top: 6px;
+    height: 3px;
+    border-radius: 999px;
+    background: #e5e7eb;
+    overflow: hidden;
+}
+
+.sidebar-card-underline span {
+    display: block;
+    width: 40%;
+    height: 100%;
+    background: #dfc7b5;
+}
+
+.sidebar-card-body {
+    margin-top: 4px;
+}
+
+/* Category list được render từ vc:categories */
+.filter-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    font-size: 13px;
+}
+
+.filter-list li + li {
+    margin-top: 2px;
+}
+
+.filter-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.filter-list li a:hover {
+    color: #111827;
+    transform: translateX(3px);
+}
+
+.btn-show-more {
+    padding: 6px 0 0 0;
+    font-size: 12px;
+    color: #2563eb;
+}
+
+.btn-show-more:hover {
+    text-decoration: none;
+    color: #1d4ed8;
+}
+
+/* Price filter - slider */
+.price-filter-form-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.price-range-wrapper {
+    padding: 10px 8px 8px 2px;
+}
+
+.price-range-inputs {
+    position: relative;
+    height: 28px;
+    margin-bottom: 30px;
+}
+
+.price-range-inputs input[type="range"] {
+    
+    left: 0;
+    right: 0;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    pointer-events: none;
+}
+
+.price-range-inputs input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: auto;
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: #22c55e;
+    border: 2px solid #ecfdf5;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+}
+
+.price-range-inputs input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: #22c55e;
+    border: 2px solid #ecfdf5;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+}
+
+.price-range-inputs input[type="range"]::-webkit-slider-runnable-track {
+    height: 5px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #d1d5db, #9ca3af);
+}
+
+.price-range-inputs input[type="range"]::-moz-range-track {
+    height: 5px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #d1d5db, #9ca3af);
+}
+
+.price-range-values {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.price-range-label strong {
+    font-weight: 700;
+    color: #111827;
+}
+
+.btn-price-apply {
+    width: 100%;
+    border-radius: 999px;
+    padding: 8px 0;
+    font-size: 13px;
+    font-weight: 600;
+    background: #111827;
+    border-color: #111827;
+}
+
+.btn-price-apply:hover {
+    background: #030712;
+    border-color: #030712;
+}
+
 /* Đảm bảo Bootstrap grid hoạt động đúng */
+
 .row {
     margin-left: -15px;
     margin-right: -15px;
@@ -420,7 +599,9 @@
     .sidebar-container {
         display: none;
     }
-
+    body {
+    	padding-top: 0px;
+	}
     .product-content {
         width: 100%;
         padding-left: 15px;
@@ -518,7 +699,7 @@
     }
 
     .recommended_items .carousel-inner .item {
-        margin: 0 -8px;
+        margin: 0px 4px;
     }
 
     .recommended_items .carousel-inner .item>div {
@@ -553,13 +734,15 @@
 /* Desktop Large */
 @media (min-width: 992px) {
     .product-image-wrapper-new {
-        height: 300px;
+        height: 100%;
+        
     }
 
     /* Desktop Large: 4 cột */
     .product-card-wrapper.col-lg-3 {
         width: 25%;
-        height: 380px;
+        
+        
     }
     
 
@@ -569,12 +752,7 @@
     }
 }
 
-/* Desktop Extra Large */
-@media (min-width: 1200px) {
-    .product-image-wrapper-new {
-        height: 202px;
-    }
-}
+
 
 /* ============================================
    PROMOTIONAL CARDS CAROUSEL
@@ -609,7 +787,7 @@
 
 .promo-card {
     flex: 0 0 calc(25% - 12px);
-    min-width: 240px;
+    min-width: 355px;
     position: relative;
     border-radius: 16px;
     overflow: hidden;
@@ -768,9 +946,13 @@
 }
 
 @media (max-width: 768px) {
+    body {
+
+       padding-top: 0px;
+    }
     .promo-carousel-wrapper {
         padding: 0 30px;
-        margin-bottom: 30px;
+        margin-bottom: 0px;
     }
 
     .promo-card {
@@ -804,6 +986,7 @@
 @media (max-width: 480px) {
     .promo-carousel-wrapper {
         padding: 0 25px;
+        margin: 35px 0 -50px 0;
     }
 
     .promo-card {

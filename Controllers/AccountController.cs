@@ -93,7 +93,7 @@ namespace MyWebApp.Controllers
             await _signInManager.SignOutAsync();
             return Redirect(returnUrl);
         }
-        public async Task<IActionResult> History()
+        public async Task<IActionResult> History(string payment)
         {
             if ((bool)!User.Identity?.IsAuthenticated)
             {
@@ -101,8 +101,12 @@ namespace MyWebApp.Controllers
                 return RedirectToAction("Login", "Account"); // Replace "Account" with your controller name
             }
 
-            // Clear the cart upon visiting the history page after a successful payment.
-            HttpContext.Session.Remove("Cart");
+            if (payment == "success")
+            {
+                TempData["success"] = "Thanh toán thành công";
+                // Clear the cart only upon a successful payment.
+                HttpContext.Session.Remove("Cart");
+            }
 
             if (TempData["success"] != null)
             {

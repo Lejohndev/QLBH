@@ -30,6 +30,7 @@ namespace MyWebApp.Models
         public BrandModel Brand { get; set; }
 
         public string Image { get; set; }
+        public string? DocumentId { get; set; }
         [NotMapped]
         [FileExtension]
         public IFormFile? ImageUpload { get; set; }

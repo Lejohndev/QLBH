@@ -9,6 +9,7 @@ namespace MyWebApp.Models
         public string UserName { get; set; }
         public DateTime CreatedDate { get; set; }
         public int Status { get; set; }
+        public long PayOSOrderCode { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
         public ICollection<OrderAddress> OrderAddresses { get; set; }
         [NotMapped]

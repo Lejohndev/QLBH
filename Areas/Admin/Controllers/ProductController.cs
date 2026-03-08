@@ -11,7 +11,7 @@ namespace MyWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Product")]
-    //[Authorize(Roles = "Admin,Seller")]
+    [Authorize(Roles = "Admin,Seller")]
 
     public class ProductController : Controller
     {
@@ -142,6 +142,7 @@ namespace MyWebApp.Areas.Admin.Controllers
                 existed_product.Price = product.Price;
                 existed_product.CategoryId = product.CategoryId;
                 existed_product.BrandId = product.BrandId;
+                existed_product.DocumentId = product.DocumentId;
 
 
                 _dataContext.Update(existed_product);

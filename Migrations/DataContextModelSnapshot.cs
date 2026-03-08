@@ -237,7 +237,6 @@ namespace MyWebApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -264,7 +263,6 @@ namespace MyWebApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -331,6 +329,9 @@ namespace MyWebApp.Migrations
                     b.Property<string>("OrderCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("PayOSOrderCode")
+                        .HasColumnType("bigint");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -358,6 +359,9 @@ namespace MyWebApp.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
@@ -410,6 +414,17 @@ namespace MyWebApp.Migrations
                     b.ToTable("Statistical");
                 });
 
+            modelBuilder.Entity("MyWebApp.Models.VietQRPaymentNotification", b =>
+                {
+                    b.Property<string>("OrderCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Success")
+                        .HasColumnType("bit");
+
+                    b.ToTable("VietQRPaymentNotifications");
+                });
+
             modelBuilder.Entity("OrderAddress", b =>
                 {
                     b.Property<int>("Id")
@@ -428,9 +443,11 @@ namespace MyWebApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
@@ -440,6 +457,7 @@ namespace MyWebApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")

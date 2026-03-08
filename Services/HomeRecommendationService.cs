@@ -167,7 +167,7 @@ namespace MyWebApp.Services
         {
             try
             {
-                var rulesPath = Path.Combine(_environment.ContentRootPath, "rules_top_53_short_id.json");
+                var rulesPath = Path.Combine(_environment.ContentRootPath, "Recomment.json");
                 _logger.LogInformation($"DEBUG: Rules path: {rulesPath}");
 
                 if (!File.Exists(rulesPath))

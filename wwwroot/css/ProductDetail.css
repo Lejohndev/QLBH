@@ -5,8 +5,8 @@ body {
 
 
 .product-detail-container {
-    padding: 0px 2px;;
-  
+    padding: 60px 15px;
+    background: linear-gradient(45deg, #C1A496 60%, #E7D1BE 40%);
 }
 
 .breadcrumb-section {
@@ -30,7 +30,7 @@ body {
 }
 
 .product-main-panel {
-    background: linear-gradient(45deg, #C1A496 60%, #E7D1BE 40%);
+    
     padding: 0px;
     border-radius: 5px;
 }
@@ -133,7 +133,7 @@ body {
 }
 
 .btn-add-to-cart {
-    background-color: transparent;
+    background-color: #fff;
     border: 2px solid #f0b90b;
     color: #f0b90b;
 }
@@ -214,13 +214,24 @@ body {
     text-decoration: none;
 }
 
+.product-image-wrapper-new {
+    width: 100%;
+    height: 200px; /* Hoặc 260px tùy bạn muốn ảnh to hay nhỏ */
+    overflow: hidden;
+}
+
 .product-image-wrapper-new img {
     width: 100%;
-    height: 200px;
+    height: 100%;
+    object-fit: cover; /* Quan trọng: giúp ảnh tự cắt cho vừa khung mà không bị méo */
+    object-position: center;
 }
 
 .product-details-new {
     padding: 15px;
+    display: flex;            /* Thêm flex */
+    flex-direction: column;   /* Xếp dọc */
+    flex-grow: 1;
 }
 
 .product-category-badge-new {
@@ -242,6 +253,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: auto;
 }
 
 .product-price-new {
@@ -286,4 +298,22 @@ body {
         padding: 10px;
         font-size: 1rem;
     }
+}
+.description-content-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Quan trọng: Hiện thanh trượt nếu nội dung quá rộng */
+    display: block;
+}
+
+/* Ép tất cả các bảng trong mô tả về chiều rộng tối đa 100% */
+.description-content-wrapper table {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-collapse: collapse;
+}
+
+/* Đảm bảo ảnh trong mô tả không bị tràn */
+.description-content-wrapper img {
+    max-width: 100% !important;
+    height: auto !important;
 }

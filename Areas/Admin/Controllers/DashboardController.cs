@@ -8,7 +8,7 @@ namespace MyWebApp.Areas.Admin.Controllers
 
     [Area("Admin")]
     [Route("Admin")]
-    //[Authorize(Roles = "Admin,Seller")]
+    [Authorize(Roles = "Admin,Seller")]
     public class DashboardController : Controller
     {
         private readonly DataContext _dataContext;

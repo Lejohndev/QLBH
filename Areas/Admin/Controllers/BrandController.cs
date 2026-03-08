@@ -7,7 +7,7 @@ namespace MyWebApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Brand")]
-    //[Authorize(Roles = "Admin,Seller")]
+    [Authorize(Roles = "Admin,Seller")]
     public class BrandController : Controller
     {
         private readonly DataContext _dataContext;

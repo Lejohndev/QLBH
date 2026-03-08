@@ -401,7 +401,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 }
 
 .btn-category:hover {
-    background: #45a049;
+   
+    background: #FE980F;
 }
 
 .main-nav ul {
@@ -1270,7 +1271,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
     }
 
     .iframe-img {
-        height: 120px;
+        height: 240px;
     }
 
     .social-links {
@@ -1619,7 +1620,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 }
 
     .header-action-btn:hover {
-        background: #45a049;
+        background: #FE980F;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }

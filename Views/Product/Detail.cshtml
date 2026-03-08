@@ -15,7 +15,7 @@
                 <a asp-action="Index" asp-controller="Home">Home</a>
                 <span class="breadcrumb-separator">/</span>
                 <a asp-action="Index" asp-controller="Category"
-                    asp-route-slug="@Model.Category.Slug">@Model.Category.Name</a>
+                   asp-route-slug="@Model.Category.Slug">@Model.Category.Name</a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb-current">@Model.Name</span>
             </div>
@@ -46,9 +46,6 @@
                         <div class="current-price">@Model.Price.ToString("#,##0") ₫</div>
                     </div>
 
-                    <div class="product-short-description">
-                        @Html.Raw(Model.Description.Substring(0, Math.Min(Model.Description.Length, 200)) + "...")
-                    </div>
 
                     <form id="add-to-cart-form">
                         <input type="hidden" name="Id" value="@Model.Id" />
@@ -81,7 +78,8 @@
             <li><a href="#reviews" data-toggle="tab">Đánh giá</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade active in" id="description"> @Html.Raw(Model.Description)
+            <div class="tab-pane fade active in" id="description">
+                <div id="description-content"></div>
             </div>
             <div class="tab-pane fade" id="reviews">
                 <p>Chưa có đánh giá nào cho sản phẩm này.</p>
@@ -106,23 +104,25 @@
                     <div class="col-xs-6 col-md-4 col-lg-3 product-card-wrapper">
                         <div class="product-card">
                             <a asp-action="Detail" asp-controller="Product" asp-route-Id="@relatedProduct.Id"
-                                class="product-link">
+                                   class="product-link">
                                 <div class="product-image-wrapper-new">
                                     <img src="~/media/products/@relatedProduct.Image" alt="@relatedProduct.Name"
-                                        class="product-main-image" />
-                                </div <div class="product-details-new">
-                                <div class="product-category-badge-new">@relatedProduct.Category.Name</div>
-                                <h3 class="product-name-new">@relatedProduct.Name</h3>
-                                <div class="product-price-section">
-                                    <span class="product-price-new">@relatedProduct.Price.ToString("#,##0")
-                                        ₫</span>
-                                    <button type="button" class="btn-add-to-cart-circle ajax-add-to-cart" data-id="@relatedProduct.Id">
-                                        <i class="fa fa-shopping-cart"></i>
-                                    </button>
+                                         class="product-main-image" />
+                                </div>
+
+                                <div class="product-details-new">
+                                    <div class="product-category-badge-new">@relatedProduct.Category.Name</div>
+                                    <h3 class="product-name-new">@relatedProduct.Name</h3>
+                                    <div class="product-price-section">
+                                        <span class="product-price-new">@relatedProduct.Price.ToString("#,##0") ₫</span>
+                                        <button type="button" class="btn-add-to-cart-circle ajax-add-to-cart"
+                                                data-id="@relatedProduct.Id">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </a>
                         </div>
-
                     </div>
                 }
             </div>
@@ -132,30 +132,50 @@
 
 @section Scripts {
     <script>
-        function updateQty(change) {
-            const input = document.getElementById('quantityInput');
-            let currentValue = parseInt(input.value);
-            let newValue = currentValue + change;
+                $(document).ready(function () {
+                    // 1. Lấy nội dung HTML từ Model và chuyển thành chuỗi JSON an toàn
+                    var rawDescription = @Json.Serialize(Model.Description);
 
-            if (newValue < 1) {
-                newValue = 1;
-            }
-            input.value = newValue;
-        }
+                    // 2. Đổ nội dung vào thẻ div
+                    // Trình duyệt sẽ tự động xử lý các thẻ đóng </div> thừa tại bước này
+                    // để nó không phá vỡ cấu trúc trang web chính.
+                    document.getElementById("description-content").innerHTML = rawDescription;
 
-        document.getElementById('quantityInput').addEventListener('input', function (e) {
-            this.value = this.value.replace(/[^0-9]/g, '');
-            if (parseInt(this.value) < 1 || this.value === '') {
-                this.value = '1';
-            }
-        });
+                    
+                    $('#description-content table').addClass('table table-bordered table-striped');
+                    $('#description-content table').css({
+                        'width': '100%',
+                        'max-width': '100%'
+                    });
+                    $('#description-content img').css({
+                        'max-width': '100%',
+                        'height': 'auto'
+                    });
+                });
+                function updateQty(change) {
+                    const input = document.getElementById('quantityInput');
+                    let currentValue = parseInt(input.value);
+                    let newValue = currentValue + change;
 
-        $('#buy-now-button').on('click', function(e) {
-            e.preventDefault();
-            const form = $('#add-to-cart-form');
-            const productId = form.find('input[name="Id"]').val();
-            const quantity = form.find('input[name="quantity"]').val();
-            window.location.href = `/Cart/BuyNow?Id=${productId}&quantity=${quantity}`;
-        });
+                    if (newValue < 1) {
+                        newValue = 1;
+                    }
+                    input.value = newValue;
+                }
+
+                document.getElementById('quantityInput').addEventListener('input', function (e) {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    if (parseInt(this.value) < 1 || this.value === '') {
+                        this.value = '1';
+                    }
+                });
+
+                $('#buy-now-button').on('click', function (e) {
+                    e.preventDefault();
+                    const form = $('#add-to-cart-form');
+                    const productId = form.find('input[name="Id"]').val();
+                    const quantity = form.find('input[name="quantity"]').val();
+                    window.location.href = `/Cart/BuyNow?Id=${productId}&quantity=${quantity}`;
+                });
     </script>
 }

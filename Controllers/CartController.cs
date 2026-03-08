@@ -3,18 +3,85 @@ using MyWebApp.Models;
 using MyWebApp.Models.ViewModels;
 using MyWebApp.Repository;
 using System.Security.Claims;
+using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+
 namespace MyWebApp.Controllers
 {
   public class CartController : Controller
   {
     private readonly DataContext _dataContext;
-    public CartController(DataContext _context)
+    private readonly IConfiguration _config;
+
+    public CartController(DataContext context, IConfiguration config)
     {
-      _dataContext = _context;
+      _dataContext = context;
+      _config = config;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index(string payment, long? payosOrderCode)
     {
+      if (payment == "cancel" && payosOrderCode.HasValue)
+      {
+        try
+        {
+            var clientId = _config["PayOS:ClientId"];
+            var apiKey = _config["PayOS:ApiKey"];
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-client-id", clientId);
+            client.DefaultRequestHeaders.Add("x-api-key", apiKey);
+            
+            var content = new StringContent("{}", Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync(
+                $"https://api-merchant.payos.vn/v2/payment-requests/{payosOrderCode.Value}/cancel",
+                content
+            );
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var root = JsonDocument.Parse(jsonResponse).RootElement;
+            var code = root.GetProperty("code").GetString();
+            
+            
+            if (code == "00" || root.GetProperty("desc").GetString()?.ToUpper().Contains("ALREADY CANCELED") == true)
+            {
+                var order = _dataContext.Orders.FirstOrDefault(o => o.PayOSOrderCode == payosOrderCode.Value);
+                if (order != null)
+                {
+                    if (order.Status != 2)
+                    {
+                        order.Status = 4; 
+                        await _dataContext.SaveChangesAsync();
+                        TempData["success"] = "Giao dịch thanh toán đã được hủy thành công.";
+                    }
+                    else
+                    {
+                        TempData["info"] = "Đơn hàng này đã được thanh toán và không thể hủy.";
+                    }
+                }
+            }
+            else
+            {
+                var errorDesc = root.GetProperty("desc").GetString();
+                TempData["error"] = $"Hủy thanh toán thất bại: {errorDesc} (Mã lỗi: {code})";
+                Console.WriteLine($"ERROR (Cart Cancel): Failed to cancel order for PayOS code {payosOrderCode}. Reason: {errorDesc}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"EXCEPTION (Cart Cancel): An error occurred while cancelling order for PayOS code {payosOrderCode}. Exception: {ex.Message}");
+            TempData["error"] = "Có lỗi nghiêm trọng xảy ra khi cố gắng hủy thanh toán.";
+        }
+      }
+      else if (payment == "cancel")
+      {
+           TempData["info"] = "Giao dịch thanh toán đã được hủy.";
+      }
+
       List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
       CheckoutViewModel vm = new()
       {

@@ -9,7 +9,7 @@ using MyWebApp.Repository;
 
 namespace MyWebApp.Controllers
 {
-    [Authorize]
+
     public class CheckoutController : Controller
     {
         private readonly DataContext _dataContext;
@@ -17,58 +17,84 @@ namespace MyWebApp.Controllers
         {
             _dataContext = context;
         }
-      
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Checkout(CheckoutViewModel vm)
         {
-            var userEmail = User.FindFirstValue(ClaimTypes.Email);
-            if (userEmail == null)
+            // Khách không đăng nhập: dùng email từ form. Đã đăng nhập: dùng email từ tài khoản.
+            var userEmail =  vm.Address?.Email?.Trim();
+
+            if (string.IsNullOrWhiteSpace(userEmail))
             {
-                return RedirectToAction("Login", "Account");
+                TempData["error"] = "Vui lòng nhập Email.";
+                return RedirectToAction("Index", "Cart");
             }
-            else
+            if (string.IsNullOrWhiteSpace(vm.Address?.FullName))
             {
-                var ordercode = Guid.NewGuid().ToString();
-                var orderItem = new OrderModel
+                TempData["error"] = "Vui lòng nhập Họ và tên.";
+                return RedirectToAction("Index", "Cart");
+            }
+            if (string.IsNullOrWhiteSpace(vm.Address?.Phone))
+            {
+                TempData["error"] = "Vui lòng nhập Số điện thoại.";
+                return RedirectToAction("Index", "Cart");
+            }
+
+            var cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+            if (cartItems.Count == 0)
+            {
+                TempData["error"] = "Giỏ hàng trống. Vui lòng thêm sản phẩm.";
+                return RedirectToAction("Index", "Cart");
+            }
+
+            // 1. TẠO ORDER (CHƯA THANH TOÁN)
+            var ordercode = Guid.NewGuid().ToString("N").Substring(0, 8);
+
+            var orderItem = new OrderModel
+            {
+                OrderCode = ordercode,
+                UserName = userEmail,
+                Status = 0,
+                CreatedDate = DateTime.Now
+            };
+
+            _dataContext.Orders.Add(orderItem);
+            await _dataContext.SaveChangesAsync();
+
+            // 2. LƯU ĐỊA CHỈ
+            vm.Address ??= new OrderAddress();
+            vm.Address.OrderId = orderItem.Id;
+            vm.Address.Email = userEmail;
+            vm.Address.FullName = vm.Address.FullName?.Trim() ?? "";
+            vm.Address.Phone = vm.Address.Phone?.Trim() ?? "";
+            _dataContext.OrderAddresses.Add(vm.Address);
+
+            // 3. LƯU ORDER DETAILS
+
+
+            foreach (var cart in cartItems)
+            {
+                _dataContext.OrderDetails.Add(new OrderDetails
                 {
-                    OrderCode = ordercode,
                     UserName = userEmail,
-
-                    Status = 1,
-                    CreatedDate = DateTime.Now
-                };
-                _dataContext.Add(orderItem);
-                await _dataContext.SaveChangesAsync(); // Lưu để có id cho model
-
-                vm.Address.OrderId = orderItem.Id;
-                vm.Address.Email = userEmail;
-
-                _dataContext.OrderAddresses.Add(vm.Address);
-                await _dataContext.SaveChangesAsync();
-
-                List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
-                decimal totalAmount = 0;
-                foreach (var cart in cartItems)
-                {
-                    var orderdetails = new OrderDetails
-                    {
-                        
-                        UserName = userEmail,
-                        OrderCode = ordercode,
-                        OrderId = orderItem.Id,
-                        ProductId = cart.ProductId,
-                        Price = cart.Price,
-                        Quantity = cart.Quantity
-
-                    };
-                    _dataContext.Add(orderdetails);
-                    await _dataContext.SaveChangesAsync(); // Use async method
-                    totalAmount += cart.Price * cart.Quantity;
-                }
-                
-                return RedirectToAction("GenerateQrCode", "VietQR", new { i = orderItem.Id });
+                    OrderCode = ordercode,
+                    OrderId = orderItem.Id,
+                    ProductId = cart.ProductId,
+                    Price = cart.Price,
+                    Quantity = cart.Quantity
+                });
             }
+
+            await _dataContext.SaveChangesAsync();
+
+
+            return RedirectToAction(
+                "GenerateQrCode",
+                "VietQR",
+                new { orderCode = orderItem.OrderCode }
+            );
         }
     }
 }
