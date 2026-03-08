@@ -62,13 +62,13 @@ secrets.json
 .env
 .env.*
 !.env.example
-.DEPLOYMENT.md
+
 
 # Publish / deploy
 deploy.zip
 *.zip
 !**/content/**/*.zip
-
+DEPLOYMENT.md
 # ============================================
 # OS & misc
 # ============================================
