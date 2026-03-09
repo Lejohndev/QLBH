@@ -47,8 +47,8 @@ public class VietQRController : Controller
             price = (int)od.Price
         }).ToList();
 
-        // Sử dụng order.Id làm orderCode cho PayOS
-        long payosOrderCode = order.Id;
+
+        long payosOrderCode = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
         // WEBHOOK ĐỐI SOÁT
         order.PayOSOrderCode = payosOrderCode;
@@ -61,7 +61,7 @@ public class VietQRController : Controller
         {
             orderCode = payosOrderCode,
             amount = roundedTotal,
-            description = order.OrderCode,
+            description = $"Windshop{new Random().Next(100000, 999999)}",
             items = items,
             cancelUrl = cancelUrlWithCode,
             returnUrl = $"{Request.Scheme}://{Request.Host}/VietQR/Success?payment=success",
@@ -149,10 +149,10 @@ public class VietQRController : Controller
         ViewBag.AccountNumber = data.GetProperty("accountNumber").GetString();
         ViewBag.Amount = total;
         ViewBag.OrderCode = data.GetProperty("description").GetString();
-        ViewBag.PayOSOrderCode = payosOrderCode; // <- THÊM DÒNG NÀY
-        ViewBag.Email = paymentData.buyerEmail; // <- THÊM DÒNG NÀY
-        ViewBag.Phone = orderAddress?.Phone; // <- THÊM DÒNG NÀY
-        ViewBag.Name = paymentData.buyerName; // <- THÊM DÒNG NÀY
+        ViewBag.PayOSOrderCode = payosOrderCode;
+        ViewBag.Email = paymentData.buyerEmail;
+        ViewBag.Phone = orderAddress?.Phone;
+        ViewBag.Name = paymentData.buyerName;
 
         return View();
     }
@@ -411,7 +411,7 @@ public class VietQRController : Controller
         var productsInCart = HttpContext.Session.GetJson<List<CartItemModel>>("Cart")?.ToList() ?? new List<CartItemModel>();
         var productsOrdered = new List<ProductInfo>();
 
-        foreach(var product in productsInCart)
+        foreach (var product in productsInCart)
         {
             var productInfo = new ProductInfo
             {
@@ -453,11 +453,11 @@ public class VietQRController : Controller
             Console.WriteLine("Gửi mail thất bại");
         }
 
-         return Ok(new { returnUrl = $"/VietQR/Payment-Success?email={payment.Email}" });
+        return Ok(new { returnUrl = $"/VietQR/Payment-Success?email={payment.Email}" });
     }
 
     [HttpGet("Payment-Success")]
-    public IActionResult SuccessGet([FromQuery]string email)
+    public IActionResult SuccessGet([FromQuery] string email)
     {
         return View("Success", email);
     }

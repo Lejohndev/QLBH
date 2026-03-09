@@ -191,7 +191,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 15px;
-    max-width: 1200px;
+    max-width: 1175px;
 }
 
 /* Hamburger Button - Tròn, màu xanh lá như ảnh */

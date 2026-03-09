@@ -9,7 +9,7 @@
     var email = ViewBag.Email;
     var phone = ViewBag.Phone;
     var name = ViewBag.Name;
-    
+
     var bankId = "970422";
     var template = "compact2";
 
@@ -83,26 +83,26 @@
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ 
+                            body: JSON.stringify({
                                 email: email,
                                 name: name,
                                 phone: phone,
                                 status: 'success'
                             })
                         })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`Network response was not ok. Status: ${response.status}`);
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            console.log(data.returnUrl)
-                            if (data) window.location.href = data.returnUrl
-                        })
-                        .catch(error => {
-                            console.error(error)
-                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(`Network response was not ok. Status: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log(data.returnUrl)
+                                if (data) window.location.href = data.returnUrl
+                            })
+                            .catch(error => {
+                                console.error(error)
+                            })
                     } else if (data.status === 'cancelled') {
                         clearInterval(pollingInterval);
                         alert('Thanh toán đã bị hủy. Bạn sẽ được chuyển hướng về giỏ hàng.');

@@ -26,9 +26,15 @@ namespace MyWebApp.Repository
         {
             
             base.OnModelCreating(builder);
-            
 
-   
+            builder.Entity<ProductModel>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18, 2)");
+
+            builder.Entity<OrderDetails>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18, 2)");
+
             builder.Entity<VietQRPaymentNotification>().HasNoKey();
             builder.Entity<AppUserModel>()
                 .HasOne(u => u.Role)

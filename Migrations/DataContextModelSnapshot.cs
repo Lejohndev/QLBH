@@ -295,7 +295,7 @@ namespace MyWebApp.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
@@ -372,7 +372,7 @@ namespace MyWebApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("Slug")
                         .HasColumnType("nvarchar(max)");
