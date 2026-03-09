@@ -1291,7 +1291,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 
     .contact-item {
         flex-direction: column;
-        text-align: center;
         padding: 10px;
         margin-bottom: 12px;
     }
