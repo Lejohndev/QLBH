@@ -411,7 +411,6 @@ public class VietQRController : Controller
         var productsInCart = HttpContext.Session.GetJson<List<CartItemModel>>("Cart")?.ToList() ?? new List<CartItemModel>();
         var productsOrdered = new List<ProductInfo>();
 
-        var siteDomain = _config["SiteDomain"] ?? $"{Request.Scheme}://{Request.Host}";
         foreach (var product in productsInCart)
         {
             var productInfo = new ProductInfo
@@ -419,7 +418,7 @@ public class VietQRController : Controller
                 Name = product.ProductName,
                 Quantity = product.Quantity,
                 Price = product.Price,
-                Url = $"{siteDomain}/Product/Detail/{product.ProductId}",
+                Url = $"{Request.Scheme}://{Request.Host}/Product/Detail/{product.ProductId}",
                 DocumentId = await _context.Products.FindAsync(product.ProductId) is ProductModel p ? p.DocumentId : ""
             };
             productsOrdered.Add(productInfo);
