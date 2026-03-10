@@ -459,20 +459,32 @@ public class VietQRController : Controller
         }
 
 
-        var result = await _mailSender.SendMailAsync(new MailContent
+        // Try to send confirmation email, but don't let it break the success flow
+        try
         {
-            To = payment.Email,
-            Subject = "Đơn hàng của bạn đã được thanh toán thành công!",
-            Body = HtmlHelper.GenerateHTMLContent(productsOrdered, payment.Name, payment.Phone, payment.Email)
-        });
+            var result = await _mailSender.SendMailAsync(new MailContent
+            {
+                To = payment.Email,
+                Subject = "Đơn hàng của bạn đã được thanh toán thành công!",
+                Body = HtmlHelper.GenerateHTMLContent(productsOrdered, payment.Name, payment.Phone, payment.Email)
+            });
 
-        if (result)
-        {
-            Console.WriteLine("Gửi mail thành công");
+            if (result)
+            {
+                Console.WriteLine("SUCCESS (SendMail): Confirmation email sent successfully to " + payment.Email);
+            }
+            else
+            {
+                // This else block might be for cases where the mail service returns false without an exception
+                Console.WriteLine("ERROR (SendMail): Mail service returned false without exception for " + payment.Email);
+            }
         }
-        else
+        catch (Exception ex)
         {
-            Console.WriteLine("Gửi mail thất bại");
+            // Log the exception but do not rethrow.
+            // This prevents the entire transaction from failing if the email service is down.
+            Console.WriteLine("EXCEPTION (SendMail): Failed to send confirmation email to " + payment.Email);
+            Console.WriteLine(ex.ToString());
         }
 
         return Ok(new { returnUrl = $"/VietQR/Payment-Success?email={payment.Email}" });
