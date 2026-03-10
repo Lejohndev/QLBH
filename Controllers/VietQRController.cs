@@ -404,7 +404,7 @@ public class VietQRController : Controller
     {
         return Ok("Webhook OK");
     }
-
+    [IgnoreAntiforgeryToken]
     [HttpPost("Success")]
     public async Task<IActionResult> Success([FromBody] PaymentInfo payment)
     {
