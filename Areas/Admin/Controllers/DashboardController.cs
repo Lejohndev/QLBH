@@ -7,7 +7,7 @@ namespace MyWebApp.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
-    [Route("Admin")]
+    [Route("Admin/Dashboard")]
     [Authorize(Roles = "Admin,Seller")]
     public class DashboardController : Controller
     {
@@ -18,6 +18,8 @@ namespace MyWebApp.Areas.Admin.Controllers
             _dataContext = context;
             _webHostEnvironment = webHostEnvironment;
         }
+
+        [HttpGet]
         public IActionResult Index()
         {
 
@@ -31,19 +33,57 @@ namespace MyWebApp.Areas.Admin.Controllers
             ViewBag.CountUser = count_user;
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> GetCharData()
+        [HttpPost("GetOrderChartData")]
+        public async Task<IActionResult> GetOrderChartData()
         {
-            var data = _dataContext.Statistical
-                .Select(s => new
-                {
-                    data = s.DateCrated.ToString("yyyy-MM--dd"),
-                    sold = s.Sold,
-                    quantity = s.Revenue,
-                    profit = s.Profit
+            var data = _dataContext.Orders
+                .GroupBy(o => o.CreatedDate.Date)
+                .Select(g => new {
+                    date = g.Key.ToString("yyyy-MM-dd"),
+                    count = g.Count()
                 })
                 .ToList();
             return Json(data);
+        }
+
+        [HttpPost("GetProductChartData")]
+        public async Task<IActionResult> GetProductChartData()
+        {
+            var data = _dataContext.OrderDetails
+                .GroupBy(od => od.ProductId)
+                .Select(g => new {
+                    productId = g.Key,
+                    count = g.Sum(od => od.Quantity)
+                })
+                .OrderByDescending(x => x.count)
+                .Take(5)
+                .Join(_dataContext.Products,
+                      od => od.productId,
+                      p => p.Id,
+                      (od, p) => new {
+                          label = p.Name,
+                          value = od.count
+                      })
+                .ToList();
+            return Json(data);
+        }
+
+        [HttpPost("GetUserChartData")]
+        public async Task<IActionResult> GetUserChartData()
+        {
+            var userRoles = _dataContext.UserRoles
+                .Join(_dataContext.Roles,
+                    ur => ur.RoleId,
+                    r => r.Id,
+                    (ur, r) => new { RoleName = r.Name })
+                .GroupBy(x => x.RoleName)
+                .Select(g => new {
+                    label = g.Key,
+                    value = g.Count()
+                })
+                .ToList();
+
+            return Json(userRoles);
         }
     }
 }
