@@ -47,7 +47,7 @@ public class VietQRController : Controller
             price = (int)od.Price
         }).ToList();
 
-
+        // Sử dụng DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() làm orderCode cho PayOS
         long payosOrderCode = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
         // WEBHOOK ĐỐI SOÁT
@@ -149,9 +149,9 @@ public class VietQRController : Controller
         ViewBag.AccountNumber = data.GetProperty("accountNumber").GetString();
         ViewBag.Amount = total;
         ViewBag.OrderCode = data.GetProperty("description").GetString();
-        ViewBag.PayOSOrderCode = payosOrderCode;
-        ViewBag.Email = paymentData.buyerEmail;
-        ViewBag.Phone = orderAddress?.Phone;
+        ViewBag.PayOSOrderCode = payosOrderCode; 
+        ViewBag.Email = paymentData.buyerEmail; 
+        ViewBag.Phone = orderAddress?.Phone; 
         ViewBag.Name = paymentData.buyerName;
 
         return View();
@@ -206,7 +206,7 @@ public class VietQRController : Controller
             var signatureParams = new SortedDictionary<string, string>();
             foreach (var property in dataElement.EnumerateObject())
             {
-                // ToString() của JsonElement sẽ trả về giá trị dưới dạng chuỗi JSON (ví dụ: "some string", 123, true)
+        
 
                 string value;
                 switch (property.Value.ValueKind)
@@ -404,36 +404,14 @@ public class VietQRController : Controller
     {
         return Ok("Webhook OK");
     }
-    [HttpGet("Success")]
-    public IActionResult HandlePayOSReturn([FromQuery] string status, [FromQuery] long orderCode)
-    {
-        if (status == "PAID")
-        {
-            var order = _context.Orders.FirstOrDefault(o => o.PayOSOrderCode == orderCode);
-            if (order != null)
-            {
-                // The webhook is responsible for DB update.
-                // The client-side poll is responsible for clearing cart & sending email.
-                // This GET handler's only job is to get the user to the right final page.
-                var orderAddress = _context.OrderAddresses.FirstOrDefault(x => x.OrderId == order.Id);
-                var email = orderAddress?.Email ?? "";
-                TempData["success"] = "Thanh toán thành công";
-                return RedirectToAction("SuccessGet", new { email = email });
-            }
-        }
 
-        // For any other status (CANCELLED, etc.) or if data is missing
-        return RedirectToAction("Index", "Cart", new { payment = "cancel" });
-    }
-
-    [IgnoreAntiforgeryToken]
     [HttpPost("Success")]
     public async Task<IActionResult> Success([FromBody] PaymentInfo payment)
     {
         var productsInCart = HttpContext.Session.GetJson<List<CartItemModel>>("Cart")?.ToList() ?? new List<CartItemModel>();
         var productsOrdered = new List<ProductInfo>();
 
-        foreach (var product in productsInCart)
+        foreach(var product in productsInCart)
         {
             var productInfo = new ProductInfo
             {
@@ -459,39 +437,27 @@ public class VietQRController : Controller
         }
 
 
-        // Try to send confirmation email, but don't let it break the success flow
-        try
+        var result = await _mailSender.SendMailAsync(new MailContent
         {
-            var result = await _mailSender.SendMailAsync(new MailContent
-            {
-                To = payment.Email,
-                Subject = "Đơn hàng của bạn đã được thanh toán thành công!",
-                Body = HtmlHelper.GenerateHTMLContent(productsOrdered, payment.Name, payment.Phone, payment.Email)
-            });
+            To = payment.Email,
+            Subject = "Đơn hàng của bạn đã được thanh toán thành công!",
+            Body = HtmlHelper.GenerateHTMLContent(productsOrdered, payment.Name, payment.Phone, payment.Email)
+        });
 
-            if (result)
-            {
-                Console.WriteLine("SUCCESS (SendMail): Confirmation email sent successfully to " + payment.Email);
-            }
-            else
-            {
-                // This else block might be for cases where the mail service returns false without an exception
-                Console.WriteLine("ERROR (SendMail): Mail service returned false without exception for " + payment.Email);
-            }
-        }
-        catch (Exception ex)
+        if (result)
         {
-            // Log the exception but do not rethrow.
-            // This prevents the entire transaction from failing if the email service is down.
-            Console.WriteLine("EXCEPTION (SendMail): Failed to send confirmation email to " + payment.Email);
-            Console.WriteLine(ex.ToString());
+            Console.WriteLine("Gửi mail thành công");
+        }
+        else
+        {
+            Console.WriteLine("Gửi mail thất bại");
         }
 
-        return Ok(new { returnUrl = $"/VietQR/Payment-Success?email={payment.Email}" });
+         return Ok(new { returnUrl = $"/VietQR/Payment-Success?email={payment.Email}" });
     }
 
     [HttpGet("Payment-Success")]
-    public IActionResult SuccessGet([FromQuery] string email)
+    public IActionResult SuccessGet([FromQuery]string email)
     {
         return View("Success", email);
     }
