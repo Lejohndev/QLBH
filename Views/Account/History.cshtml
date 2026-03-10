@@ -28,11 +28,11 @@
                         <div>
                             @if (order.Status == 1) // Chờ thanh toán
                             {
-                                <span class="badge bg-warning text-dark status-badge"> thanh toán</span>
+                                <span class="badge bg-warning text-dark status-badge"> Chưa thanh toán</span>
                             }
                             else if (order.Status == 0) // Hoàn thành
                             {
-                                <span class="badge bg-success status-badge">Đã hoàn thành</span>
+                                <span class="badge bg-success status-badge">Đang xử lý</span>
                             }
                             else if (order.Status == 2) // Đã thanh toán
                             {

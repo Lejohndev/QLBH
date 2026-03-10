@@ -43,16 +43,16 @@
                 <td>
                         @if (item.Status == 1)
                         {
-                            <span class="text text-success">Đợi xử lý</span>
+                            <span class="text text-success">Chưa thanh toán</span>
 
                         }
                         else if (item.Status == 0)
                         {
-                            <span class="text text-primary">Đã xử lý</span>
+                            <span class="text text-primary">Đang xử lý</span>
                         }
                         else if (item.Status == 2)
                         {
-                            <span class="text text-primary">đang vận chuyển</span>
+                            <span class="text text-primary">Đã thanh toán</span>
                         }
                         else
                         {
