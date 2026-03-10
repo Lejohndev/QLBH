@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oi59MkIYE3w=",
+  "dgSpecHash": "5Wdy78VWxZM=",
   "success": true,
-  "projectFilePath": "D:\\MyProject\\QLBH\\MyWebApp.csproj",
+  "projectFilePath": "D:\\QLBH\\MyWebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hi\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
     "C:\\Users\\Hi\\.nuget\\packages\\accord.machinelearning\\3.8.0\\accord.machinelearning.3.8.0.nupkg.sha512",

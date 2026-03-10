@@ -404,6 +404,28 @@ public class VietQRController : Controller
     {
         return Ok("Webhook OK");
     }
+    [HttpGet("Success")]
+    public IActionResult HandlePayOSReturn([FromQuery] string status, [FromQuery] long orderCode)
+    {
+        if (status == "PAID")
+        {
+            var order = _context.Orders.FirstOrDefault(o => o.PayOSOrderCode == orderCode);
+            if (order != null)
+            {
+                // The webhook is responsible for DB update.
+                // The client-side poll is responsible for clearing cart & sending email.
+                // This GET handler's only job is to get the user to the right final page.
+                var orderAddress = _context.OrderAddresses.FirstOrDefault(x => x.OrderId == order.Id);
+                var email = orderAddress?.Email ?? "";
+                TempData["success"] = "Thanh toán thành công";
+                return RedirectToAction("SuccessGet", new { email = email });
+            }
+        }
+
+        // For any other status (CANCELLED, etc.) or if data is missing
+        return RedirectToAction("Index", "Cart", new { payment = "cancel" });
+    }
+
     [IgnoreAntiforgeryToken]
     [HttpPost("Success")]
     public async Task<IActionResult> Success([FromBody] PaymentInfo payment)
