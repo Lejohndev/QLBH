@@ -77,7 +77,7 @@
                     console.log("Status received:", data.status);
                     if (data.status === 'paid') {
                         clearInterval(pollingInterval);
-                        alert('Thanh toán thành công! Bạn sẽ được chuyển hướng đến lịch sử đơn hàng.');
+                        alert('Thanh toán thành công! Hệ thống sẽ chuyển hướng bạn ngay bây giờ.');
                         fetch(successUrl, {
                             method: 'POST',
                             headers: {
@@ -90,19 +90,25 @@
                                 status: 'success'
                             })
                         })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error(`Network response was not ok. Status: ${response.status}`);
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                console.log(data.returnUrl)
-                                if (data) window.location.href = data.returnUrl
-                            })
-                            .catch(error => {
-                                console.error(error)
-                            })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Server responded with status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data && data.returnUrl) {
+                                console.log('Redirecting to:', data.returnUrl);
+                                window.location.href = data.returnUrl;
+                            } else {
+                                console.error('Did not receive a valid returnUrl from server.', data);
+                                alert('Đã xảy ra lỗi khi lấy URL chuyển hướng. Vui lòng kiểm tra lịch sử đơn hàng của bạn.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Failed to finalize payment or redirect:', error);
+                            alert('Đã xảy ra lỗi khi hoàn tất thanh toán. Vui lòng kiểm tra lịch sử đơn hàng của bạn. Chi tiết lỗi đã được ghi lại trong console (F12).');
+                        });
                     } else if (data.status === 'cancelled') {
                         clearInterval(pollingInterval);
                         alert('Thanh toán đã bị hủy. Bạn sẽ được chuyển hướng về giỏ hàng.');
