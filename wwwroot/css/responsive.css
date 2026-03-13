@@ -582,6 +582,7 @@
 
 	.order-message {
 		display: inline-block;
+		width: 100%;
 	}
 
 	.response-area .media img {
