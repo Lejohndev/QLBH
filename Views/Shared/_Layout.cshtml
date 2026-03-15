@@ -38,6 +38,7 @@
 
                                                 <link rel="stylesheet" href="~/css/site.css" />
                                                 <link rel="stylesheet" href="~/css/Layout.css" />
+                                                <link rel="stylesheet" href="~/css/MobileNav.css" />
 
 
                                             </head><!--/head-->
@@ -422,7 +423,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </section>
-
+                                                                        @await Html.PartialAsync("_MobileNavPartial")
                                                                         <!-- Footer -->
                                                                         <footer id="footer">
                                                                             <div class="footer-top">
@@ -788,7 +789,46 @@
 
                                                                                 });
                                                                             </script>
+                                                                            <script>
+                                                                                document.addEventListener("DOMContentLoaded", function() {
+                                                                                    const navItems = document.querySelectorAll('.mobile-nav .nav-item');
+                                                                                    const currentPath = window.location.pathname;
+                                                                            
+                                                                                    navItems.forEach(item => {
+                                                                                        const itemPath = item.getAttribute('href');
+                                                                                        if (currentPath === itemPath) {
+                                                                                            item.classList.add('active');
+                                                                                        }
+                                                                                    });
+                                                                                });
+                                                                            </script>
+                                                                                                                                                        <div id="mobile-filter-overlay" class="mobile-filter-overlay"></div>
+                                                                                                                                                        @await Html.PartialAsync("_MobileFilter")
+                                                                                                                                                        <script>
+                                                                                document.addEventListener("DOMContentLoaded", function() {
+                                                                                    const filterPanel = document.getElementById('mobile-filter-panel');
+                                                                                    const filterOverlay = document.getElementById('mobile-filter-overlay');
+                                                                                    const openBtn = document.getElementById('open-filter-panel');
+                                                                                    const closeBtn = document.getElementById('close-filter-panel');
 
+                                                                                    if (filterPanel && filterOverlay && openBtn && closeBtn) {
+                                                                                        openBtn.addEventListener('click', function () {
+                                                                                            filterPanel.classList.add('active');
+                                                                                            filterOverlay.classList.add('active');
+                                                                                        });
+
+                                                                                        closeBtn.addEventListener('click', function () {
+                                                                                            filterPanel.classList.remove('active');
+                                                                                            filterOverlay.classList.remove('active');
+                                                                                        });
+
+                                                                                        filterOverlay.addEventListener('click', function () {
+                                                                                            filterPanel.classList.remove('active');
+                                                                                            filterOverlay.classList.remove('active');
+                                                                                        });
+                                                                                    }
+                                                                                });
+                                                                            </script>
                                                                             @await RenderSectionAsync("Scripts", required: false)
                                                                         </body>
 

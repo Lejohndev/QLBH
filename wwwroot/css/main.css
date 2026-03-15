@@ -2403,7 +2403,7 @@ h2.title {
 }
 
 .btn.btn-primary {
-  background:#FE980F;
+  background:linear-gradient(90deg, #000000 0%, #E7D1BE 100%);;
   border: 0 none;
   border-radius: 0;
   margin-top: 16px;
