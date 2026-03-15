@@ -20,6 +20,10 @@ namespace MyWebApp.Models
         [Required, Range(1, int.MaxValue, ErrorMessage = "Yêu cầu nhập giá sản phẩm")]
    
         public decimal Price { get; set; }
+
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Yêu cầu nhập giá gốc sản phẩm")]
+        public decimal RealPrice { get; set; }
+
         [Required, Range(1, int.MaxValue, ErrorMessage = "Chọn một thương hiệu")]
 
         public int BrandId { get; set; }

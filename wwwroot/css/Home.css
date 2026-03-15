@@ -112,10 +112,16 @@
 }
 
 .product-price-new {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 700;
     color: #333;
     display: block;
+}
+.product-price-old {
+    font-size: 12px;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 8px;
 }
 
 .product-price-original {
@@ -128,7 +134,7 @@
 /* Add to Cart Button - Circular Green như ảnh */
 .btn-add-to-cart-circle {
     position: absolute;
-    right: 15px;
+    right: 5px;
     bottom: 4px;
     width: 44px;
     height: 44px;
@@ -646,9 +652,11 @@
     }
 
     .product-price-new {
-        font-size: 16px;
+        font-size: 12px;
     }
-
+    .product-price-old {
+       font-size: 10px;
+    }
     .product-price-section {
         padding-right: 45px;
         padding-top: 5px;
@@ -657,7 +665,7 @@
     .btn-add-to-cart-circle {
         width: 40px;
         height: 40px;
-        right: 12px;
+        right: 5px;
         bottom: 2px;
     }
 

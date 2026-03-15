@@ -34,11 +34,12 @@
                 {
                     <div class="cart-item" id="row-@item.ProductId">
                         <div class="cart-item-image">
-                            <img src="~/media/products/@item.Image" alt="@item.ProductName">
+                            <img src="~/media/products/@item.Image" alt="@item.ProductName">    
                             </div>
                             <div class="cart-item-details">
                                 <div class="cart-item-info">
-                                    <h4><a asp-controller="Product" asp-action="Detail"
+                                    <h4 style="font-size: 1.8rem;font-weight: 500;">
+                                        <a asp-controller="Product" asp-action="Detail"
                                            asp-route-id="@item.ProductId" style="color: black;">
                                             @item.ProductName
                                         </a>

@@ -841,7 +841,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 
 /* Footer Container */
 #footer {
-    background: linear-gradient(45deg, #C1A496 60%, #E7D1BE 40%);
+    background:linear-gradient(90deg, #000000 0%, #E7D1BE 100%);
     color: white;
     margin-top: auto;
 }

@@ -43,6 +43,7 @@
 
                     <div class="price-section">
                         <div class="price-label">Giá bán:</div>
+                        <div class="old-price">@Model.RealPrice.ToString("#,##0") ₫</div>
                         <div class="current-price">@Model.Price.ToString("#,##0") ₫</div>
                     </div>
 
@@ -114,12 +115,13 @@
                                     <div class="product-category-badge-new">@relatedProduct.Category.Name</div>
                                     <h3 class="product-name-new">@relatedProduct.Name</h3>
                                     <div class="product-price-section">
+                                        <span class="product-price-old">@relatedProduct.RealPrice.ToString("#,##0") ₫</span>
                                         <span class="product-price-new">@relatedProduct.Price.ToString("#,##0") ₫</span>
-                                        <button type="button" class="btn-add-to-cart-circle ajax-add-to-cart"
-                                                data-id="@relatedProduct.Id">
-                                            <i class="fa fa-shopping-cart"></i>
-                                        </button>
                                     </div>
+                                    <button type="button" class="btn-add-to-cart-circle ajax-add-to-cart"
+                                            data-id="@relatedProduct.Id">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </button>
                                 </div>
                             </a>
                         </div>

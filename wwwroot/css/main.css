@@ -69,7 +69,7 @@ a#scrollUp i{
 
 .header_top {
 	background: none repeat scroll 0 0;
-	background: linear-gradient(90deg, #C1A496 0%, #E7D1BE 100%);
+	background: linear-gradient(90deg, #000000 0%, #E7D1BE 100%);
 	position: fixed;
 	justify-content: space-between;
 	align-items: center;
