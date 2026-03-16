@@ -3,7 +3,8 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    right: 0;
+    width: 95%;
+    box-sizing: border-box;
     display: none; /* Hidden by default */
     justify-content: space-around;
     align-items: center;
@@ -11,6 +12,10 @@
     height: 60px;
     z-index: 1000;
     border-top: 1px solid #444;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .mobile-nav .nav-item {

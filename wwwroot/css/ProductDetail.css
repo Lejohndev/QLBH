@@ -83,6 +83,7 @@ body {
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    color: white;
 }
 
 .quantity-section label {
@@ -280,7 +281,10 @@ body {
     background-color: #f0b90b;
     color: #1a1a1a;
 }
-
+.old-price {
+    color: white;
+    text-decoration: line-through;
+}
 /* Responsive */
 @media (max-width: 767px) {
     .product-main-panel {
@@ -291,6 +295,7 @@ body {
     }
     .product-info-panel h1 {
         font-size: 1.6rem;
+        color: white
     }
     .price-section .current-price {
         font-size: 1.8rem;
