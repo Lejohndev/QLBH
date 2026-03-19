@@ -31,6 +31,10 @@ namespace MyWebApp.Repository
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18, 2)");
 
+            builder.Entity<ProductModel>()
+                .Property(p => p.RealPrice)
+                .HasColumnType("decimal(18, 2)");
+
             builder.Entity<OrderDetails>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18, 2)");
