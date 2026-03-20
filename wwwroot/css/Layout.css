@@ -3,28 +3,28 @@
     padding-top: 40px;
     margin: 0;
     min-height: 100vh;
-    background-color: #0a0e1a;
+   background-color: #06060c;
     background-attachment: fixed;
     background-image: 
-      
+        /* Gradient góc trái - Tím/Xanh */
         radial-gradient(ellipse 600px 600px at -20% 50%, rgba(102, 51, 153, 0.5) 0%, transparent 70%),
-     
+        /* Gradient góc phải - Đỏ/Cam */
         radial-gradient(ellipse 600px 600px at 120% 50%, rgba(255, 80, 80, 0.5) 0%, transparent 70%),
-      
+        /* Lớp 1: Glow đỏ mờ ở trên */
         radial-gradient(circle at 50% -10%, rgba(255, 80, 80, 0.15) 0%, transparent 50%),
-   
+        /* Lớp 2: Ngôi sao rất nhỏ và sáng (parallax chậm) */
         radial-gradient(2px 2px at 20% 30%, white, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
         radial-gradient(2px 2px at 60% 70%, white, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
         radial-gradient(1.5px 1.5px at 50% 50%, white, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
         radial-gradient(1px 1px at 80% 10%, white, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
         radial-gradient(2px 2px at 10% 90%, white, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-   
+        /* Lớp 3: Sao nhỏ rải rác */
         radial-gradient(1.5px 1.5px at 40% 80%, rgba(255, 255, 255, 0.8), transparent 1px),
         radial-gradient(1px 1px at 90% 40%, rgba(255, 255, 255, 0.9), transparent 1px),
         radial-gradient(1px 1px at 30% 40%, rgba(255, 255, 255, 0.7), transparent 1px),
         radial-gradient(1.5px 1.5px at 70% 20%, rgba(255, 255, 255, 0.8), transparent 1px),
         radial-gradient(1px 1px at 15% 60%, rgba(255, 255, 255, 0.9), transparent 1px),
-        
+        /* Lớp 4: Mông mộng sao dày hơn */
         radial-gradient(rgba(255, 255, 255, 0.6) 0.5px, transparent 0.5px),
         radial-gradient(rgba(255, 255, 255, 0.3) 0.5px, transparent 0.5px);
     background-size: 
