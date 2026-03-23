@@ -27,7 +27,7 @@ public class HomeController : Controller
     {
         // Cấu hình số trang và số lượng sản phẩm
         var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-        var pageSize = 8;
+        var pageSize = 30; // Số lượng sản phẩm trên mỗi trang
 
         // 3. Tạo truy vấn (Lưu ý: Không dùng ToListAsync ở đây)
         IQueryable<ProductModel> productsQuery = _dataContext.Products
@@ -52,13 +52,11 @@ public class HomeController : Controller
             ViewBag.PriceRange = priceRange;
         }
 
-        var orderedProductsQuery = productsQuery.OrderByDescending(p => p.Id); // Bắt buộc phải sắp xếp khi phân trang
-
-        // 4. Thực hiện phân trang
-        // PagedList sẽ tự động tính toán Skip/Take dựa trên pageNumber và pageSize
+        var orderedProductsQuery = productsQuery.OrderByDescending(p => p.Id); 
+       
         PagedList<ProductModel> models = new PagedList<ProductModel>(orderedProductsQuery, pageNumber, pageSize);
 
-        // --- Giữ nguyên Logic Recommendation của bạn ---
+        
         var recommendedProducts = new List<ProductModel>();
         var hasUserPurchased = false;
 
