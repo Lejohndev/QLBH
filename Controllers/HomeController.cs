@@ -95,6 +95,26 @@ public class HomeController : Controller
         ViewBag.RecommendedProducts = recommendedProducts;
         ViewBag.HasUserPurchased = hasUserPurchased;
 
+        // Fetch products for "Phần mềm bản quyền"
+        var licensedSoftwareProducts = await _dataContext.Products
+            .AsNoTracking()
+            .Include(p => p.Category)
+            .Where(p => p.Category.Name == "Phần mềm bản quyền")
+            .OrderByDescending(p => p.Id)
+            .Take(8)
+            .ToListAsync();
+        ViewBag.LicensedSoftwareProducts = licensedSoftwareProducts;
+
+        // Fetch products for "Thuê tài khoản"
+        var accountRentalProducts = await _dataContext.Products
+            .AsNoTracking()
+            .Include(p => p.Category)
+            .Where(p => p.Category.Name == "Thuê tài khoản")
+            .OrderByDescending(p => p.Id)
+            .Take(8)
+            .ToListAsync();
+        ViewBag.AccountRentalProducts = accountRentalProducts;
+
         // Truyền model đã phân trang sang View
         return View(models);
     }
