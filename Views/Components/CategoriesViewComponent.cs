@@ -11,6 +11,6 @@ namespace MyWebApp.Views.Components
         {
             _dataContext = context;
         }
-        public async Task<IViewComponentResult> InvokeAsync() => View(await _dataContext.Categories.ToListAsync());
+       public async Task<IViewComponentResult> InvokeAsync() => View(await _dataContext.Categories.ToListAsync());
     }
 }
