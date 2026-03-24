@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 @{
     var controller = ViewContext.RouteData.Values["controller"]?.ToString();//Chỉ để Slider tại trang chủ
@@ -34,7 +34,7 @@
 
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/MyWebApp.styles.css" />
-    <link href="~/css/responsive.css" rel="stylesheet">
+  
     <link rel="stylesheet" href="~/css/ProductDetail.css" />
     <link rel="stylesheet" href="~/css/OrderHistory.css" />
     <link rel="stylesheet" href="~/css/Cart.css" />
@@ -59,6 +59,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/Layout.css" />
     <link rel="stylesheet" href="~/css/MobileNav.css" />
+    <link href="~/css/responsive.css" rel="stylesheet">
 </head><!--/head-->
 
                                             <body class="@(isHomePage ? "home-page" : "")">
