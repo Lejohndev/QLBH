@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /Admin
+Disallow: /Account
+Disallow: /Cart
+Disallow: /Checkout
+Disallow: /Login
+
+Sitemap: https://windshop.id.vn/sitemap.xml

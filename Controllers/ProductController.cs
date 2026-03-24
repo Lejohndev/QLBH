@@ -49,7 +49,7 @@ namespace MyWebApp.Controllers
 
         public async Task<IActionResult> Detail(long Id)
         {
-            if (Id == null) return RedirectToAction("Index");
+            if (Id == 0) return RedirectToAction("Index");
 
             var productsById = await _dataContext.Products
                 .Include(p => p.Category)
@@ -68,6 +68,9 @@ namespace MyWebApp.Controllers
 
             var recommendedProducts = await _recommendationService.GetRecommendedProductsAsync(Id);
 
+            ViewData["Title"] = productsById.Name;
+            ViewData["Description"] = productsById.Name + " - " + productsById.Category.Name;
+            ViewData["Keywords"] = productsById.Name + ", " + productsById.Category.Name;
             ViewBag.RelatedProducts = relatedProducts;
             ViewBag.RecommendedProducts = recommendedProducts ?? new List<ProductModel>();
             return View(productsById);

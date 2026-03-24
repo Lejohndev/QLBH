@@ -19,6 +19,10 @@ namespace MyWebApp.Controllers
             CategoryModel category = _dataContext.Categories.Where(c => c.Slug == Slug).FirstOrDefault();
             if (category == null) return RedirectToAction("Index");
 
+            ViewData["Title"] = category.Name;
+            ViewData["Description"] = "Products in the " + category.Name + " category.";
+            ViewData["Keywords"] = category.Name;
+
             var productsByCategory = _dataContext.Products.Where(p => p.CategoryId == category.Id);
            
             return View(await productsByCategory.OrderByDescending(p => p.Id).ToListAsync());

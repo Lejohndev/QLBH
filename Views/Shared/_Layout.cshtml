@@ -6,43 +6,60 @@
     var isHomePage = controller == "Home" && action == "Index";
 }
 
+@inject IConfiguration Configuration
+@{
+    var domain = Configuration["Domain"];
+}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home | WINDSHOP</title>
+    <title>@ViewData["Title"] - WINDSHOP</title>
+    <meta name="description" content="@ViewData["Description"]">
+    <meta name="keywords" content="@ViewData["Keywords"]">
+    <meta name="author" content="WINDSHOP">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="@domain">
+    <meta property="og:title" content="@ViewData["Title"] - WINDSHOP">
+    <meta property="og:description" content="@ViewData["Description"]">
+    <meta property="og:image" content="@domain/images/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="@domain">
+    <meta property="twitter:title" content="@ViewData["Title"] - WINDSHOP">
+    <meta property="twitter:description" content="@ViewData["Description"]">
+    <meta property="twitter:image" content="@domain/images/logo.png">
+
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/MyWebApp.styles.css" />
-        <link href="~/css/responsive.css" rel="stylesheet">
-            <link rel="stylesheet" href="~/css/ProductDetail.css" />
-            <link rel="stylesheet" href="~/css/OrderHistory.css" />
-            <link rel="stylesheet" href="~/css/Cart.css" />
-            <link rel="stylesheet" href="~/css/Partial.css" />
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
-            <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
-            <link href="~/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/ProductDetail.css" />
+    <link rel="stylesheet" href="~/css/OrderHistory.css" />
+    <link rel="stylesheet" href="~/css/Cart.css" />
+    <link rel="stylesheet" href="~/css/Partial.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="~/css/prettyPhoto.css" rel="stylesheet">
 
-                <link rel="stylesheet" href="~/css/Home.css" />
-                <link href="~/css/price-range.css" rel="stylesheet">
-                    <link href="~/css/animate.css" rel="stylesheet">
-                        <link href="~/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/Home.css" />
+    <link href="~/css/price-range.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
 
-                            <link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true" />
-                            <link rel="icon" type="image/png" href="~/images/logo.png">
-                                <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
-                                    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
-                                        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
-                                            <link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/images/logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
 
-                                                <link rel="stylesheet" href="~/css/site.css" />
-                                                <link rel="stylesheet" href="~/css/Layout.css" />
-                                                <link rel="stylesheet" href="~/css/MobileNav.css" />
-
-
-                                            </head><!--/head-->
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Layout.css" />
+    <link rel="stylesheet" href="~/css/MobileNav.css" />
+</head><!--/head-->
 
                                             <body class="@(isHomePage ? "home-page" : "")">
                                                 <header id="header">

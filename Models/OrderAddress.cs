@@ -17,24 +17,24 @@ public class OrderAddress
     public string FullName { get; set; }
 
 
-    public string Address1 { get; set; }
+    public string? Address1 { get; set; }
 
-    public string Address2 { get; set; }
-
-
-    public string ZipCode { get; set; }
+    public string? Address2 { get; set; }
 
 
-    public string Country { get; set; }
+    public string? ZipCode { get; set; }
 
 
-    public string State { get; set; }
+    public string? Country { get; set; }
+
+
+    public string? State { get; set; }
 
     [Required(ErrorMessage = "Số điện thoại là bắt buộc")]
     public string Phone { get; set; }
 
-    public string Note { get; set; }
+    public string? Note { get; set; }
 
-    public OrderModel Order { get; set; }
+    public OrderModel? Order { get; set; }
 
 }

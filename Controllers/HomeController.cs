@@ -113,6 +113,10 @@ public class HomeController : Controller
             .ToListAsync();
         ViewBag.AccountRentalProducts = accountRentalProducts;
 
+        ViewData["Title"] = "Trang chủ";
+        ViewData["Description"] = "WINDSHOP - Cửa hàng cung cấp game bản quyền và phần mềm chính hãng.";
+        ViewData["Keywords"] = "game, software, license, key, steam, origin, uplay, blizzard, windows, office";
+
         // Truyền model đã phân trang sang View
         return View(models);
     }

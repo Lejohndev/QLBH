@@ -48,6 +48,7 @@ builder.Services.AddScoped<HRecommendationService, HomeRecommendationService>();
 // Register PayOS auto-cancellation background service
 
 builder.Services.AddMailService(builder.Configuration);
+builder.Services.AddSingleton(builder.Configuration);
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
@@ -95,6 +96,11 @@ app.MapControllerRoute(
     name: "brand",
     pattern: "/brand/{Slug?}",
     defaults: new { controller = "brand", action = "Index" });
+
+app.MapControllerRoute(
+    name: "sitemap",
+    pattern: "sitemap.xml",
+    defaults: new { controller = "Sitemap", action = "Index" });
 
 app.MapControllerRoute(
     name: "default",

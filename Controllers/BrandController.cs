@@ -18,6 +18,10 @@ namespace MyWebApp.Controllers
             BrandModel brand = await _dataContext.Brands.Where(c => c.Slug == Slug).FirstOrDefaultAsync();
             if (brand == null) return RedirectToAction("Index");
 
+            ViewData["Title"] = brand.Name;
+            ViewData["Description"] = "Products from the " + brand.Name + " brand.";
+            ViewData["Keywords"] = brand.Name;
+
             var productsByBrand = _dataContext.Products.Where(p => p.BrandId == brand.Id); 
 
             return View(await productsByBrand.OrderByDescending(p => p.Id).ToListAsync());
