@@ -40,8 +40,8 @@ namespace MyWebApp.Controllers
                 {
                     return Redirect(loginVM.ReturnUrl ?? "/");
                 }
-                ModelState.AddModelError("", "Tên người dùng hoặc mật khẩu không đúng");
             }
+            ModelState.AddModelError("", "Tên người dùng hoặc mật khẩu không đúng");
             return View(loginVM);
         }
         public IActionResult Create()
