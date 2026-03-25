@@ -27,9 +27,9 @@
         <!-- Login Form -->
         <form asp-action="Login" asp-controller="Account" method="post">
             <div class="form-group">
-                <label class="form-label">UserName</label>
+                <label class="form-label">Username or Email</label>
                 <div class="form-control-wrapper">
-                    <input asp-for="Username" class="form-control" placeholder="Enter your email address" />
+                    <input asp-for="Username" class="form-control" placeholder="Enter your username or email" />
                 </div>
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>

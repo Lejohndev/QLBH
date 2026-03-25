@@ -9,6 +9,6 @@ namespace MyWebApp.Models.ViewModels
         public string Username { get; set; }
         [DataType(DataType.Password), Required(ErrorMessage = "Hãy nhập mật khẩu")]
         public string Password { get; set; }
-        public string ReturnUrl { get; set; }
+        public string? ReturnUrl { get; set; }
     }
 }

@@ -35,13 +35,21 @@ namespace MyWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(loginVM.Username, loginVM.Password, false, false);
-                if (result.Succeeded)
+                // Tìm kiếm user bằng Email hoặc Username
+                var user = await _userManager.FindByEmailAsync(loginVM.Username) ?? 
+                           await _userManager.FindByNameAsync(loginVM.Username);
+
+                if (user != null)
                 {
-                    return Redirect(loginVM.ReturnUrl ?? "/");
+                    Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user.UserName, loginVM.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                        return Redirect(loginVM.ReturnUrl ?? "/");
+                    }
                 }
+
+                ModelState.AddModelError("", "Tên người dùng, email hoặc mật khẩu không đúng");
             }
-            ModelState.AddModelError("", "Tên người dùng hoặc mật khẩu không đúng");
             return View(loginVM);
         }
         public IActionResult Create()
